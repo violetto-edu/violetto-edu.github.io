@@ -1,0 +1,51 @@
+[
+    {
+      "subject_code": "BMATS201",
+      "semester": 2,
+      "subject_name": "Mathematics-II for CSE Stream",
+      "credits": 4
+    },
+    {
+      "subject_code": "BCHES202",
+      "semester": 2,
+      "subject_name": "Applied Chemistry for CSE stream",
+      "credits": 4
+    },
+    {
+      "subject_code": "BCEDK203",
+      "semester": 2,
+      "subject_name": "Computer-Aided Engineering Drawing",
+      "credits": 3
+    },
+    {
+      "subject_code": "BESCK204x",
+      "semester": 2,
+      "subject_name": "Engineering Science Course-II",
+      "credits": 3
+    },
+    {
+      "subject_code": "BETCK205x / BPLCK205x",
+      "semester": 2,
+      "subject_name": "Emerging Technology Course-II / Programming Languages Course-II ",
+      "credits": 3
+    },
+    {
+      "subject_code": "BPWSK206 / BENGK206",
+      "semester": 2,
+      "subject_name": "Professional Writing Skills in English / Communicative English",
+      "credits": 1
+    },
+    {
+      "subject_code": "BICOK207 / BKSKK207x / BKBKK207x",
+      "semester": 2,
+      "subject_name": "Indian Constitution / Samskrutika Kannada / Balake Kannada",
+      "credits": 1
+    },
+    {
+      "subject_code": "BSFHK258 / BIDTK258",
+      "semester": 2,
+      "subject_name": "Scientific Foundations of Health / Innovation and Design Thinking",
+      "credits": 1
+    }
+  ]
+  

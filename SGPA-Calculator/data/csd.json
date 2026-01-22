@@ -1,0 +1,254 @@
+[
+  {
+    "subject_code": "BCS301",
+    "semester": 3,
+    "subject_name": "Mathematics for CSE stream",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS302",
+    "semester": 3,
+    "subject_name": "Digital Design & Computer Organization",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS303",
+    "semester": 3,
+    "subject_name": "Operating Systems",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS304",
+    "semester": 3,
+    "subject_name": "Data Structures and Applications",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCSL305",
+    "semester": 3,
+    "subject_name": "Data Structures Lab",
+    "credits": 1
+  },
+  {
+    "subject_code": "BCS306A",
+    "semester": 3,
+    "subject_name": "Object Oriented Programming with Java",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCSK307",
+    "semester": 3,
+    "subject_name": "Social Connect and Responsibility",
+    "credits": 1
+  },
+  {
+    "subject_code": "BXX358x",
+    "semester": 3,
+    "subject_name": "Ability Enhancement Course/Skill Enhancement Course - III",
+    "credits": 1
+  },
+  {
+    "subject_code": "BNSK359 / BPEK359 / BYOK359",
+    "semester": 3,
+    "subject_name": "NSS / PE / Yoga",
+    "credits": 0
+  },
+  {
+    "subject_code": "BCS401",
+    "semester": 4,
+    "subject_name": "Analysis & Design of Algorithms",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG402",
+    "semester": 4,
+    "subject_name": "Computer Graphics and Visualization",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS403",
+    "semester": 4,
+    "subject_name": "Database Management System",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCSL404",
+    "semester": 4,
+    "subject_name": "Analysis & Design of Algorithms Lab",
+    "credits": 1
+  },
+  {
+    "subject_code": "BCS405x",
+    "semester": 4,
+    "subject_name": "ESC / ETC / PLC",
+    "credits": 3
+  },
+  {
+    "subject_code": "BXX456x",
+    "semester": 4,
+    "subject_name": "Ability Enhancement Course/Skill Enhancement Course - IV",
+    "credits": 1
+  },
+  {
+    "subject_code": "BBOK407",
+    "semester": 4,
+    "subject_name": "Biology For Computer Engineers",
+    "credits": 2
+  },
+  {
+    "subject_code": "BUHK408",
+    "semester": 4,
+    "subject_name": "Universal human values course",
+    "credits": 1
+  },
+  {
+    "subject_code": "BNSK459 / BPEK459 / BYOK459",
+    "semester": 4,
+    "subject_name": "NSS / PE / Yoga",
+    "credits": 0
+  },
+  {
+    "subject_code": "BCS501",
+    "semester": 5,
+    "subject_name": "Software Engineering & Project Management",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS502",
+    "semester": 5,
+    "subject_name": "Computer Networks",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS503",
+    "semester": 5,
+    "subject_name": "Theory of Computation",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCGL504",
+    "semester": 5,
+    "subject_name": "OO Design Pattern Lab",
+    "credits": 1
+  },
+  {
+    "subject_code": "BXX515x",
+    "semester": 5,
+    "subject_name": "Professional Elective Course ",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG586",
+    "semester": 5,
+    "subject_name": "Mini Project",
+    "credits": 2
+  },
+  {
+    "subject_code": "BRMK557",
+    "semester": 5,
+    "subject_name": "Research Methodology and IPR",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCS508",
+    "semester": 5,
+    "subject_name": "Environmental Studies and E-waste Management",
+    "credits": 1
+  },
+  {
+    "subject_code": "BNSK559 / BPEK559 / BYOK559",
+    "semester": 5,
+    "subject_name": "NSS / PE / Yoga",
+    "credits": 0
+  },
+  {
+    "subject_code": "BCM601",
+    "semester": 6,
+    "subject_name": "Machine Learning",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCG602",
+    "semester": 6,
+    "subject_name": "Design Processes and Perspectives",
+    "credits": 4
+  },
+  {
+    "subject_code": "BXX613x",
+    "semester": 6,
+    "subject_name": "Professional Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BXX654x",
+    "semester": 6,
+    "subject_name": "Open Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG685",
+    "semester": 6,
+    "subject_name": "Project Phase I",
+    "credits": 2
+  },
+  {
+    "subject_code": "BCGL606",
+    "semester": 6,
+    "subject_name": "UI/UX lab",
+    "credits": 1
+  },
+  {
+    "subject_code": "BXX657x",
+    "semester": 6,
+    "subject_name": "Ability Enhancement Course/Skill Development Course - V",
+    "credits": 1
+  },
+  {
+    "subject_code": "BNSK658 / BPEK658 / BYOK658",
+    "semester": 6,
+    "subject_name": "NSS / PE / Yoga",
+    "credits": 0
+  },
+  {
+    "subject_code": "BIKS609",
+    "semester": 6,
+    "subject_name": "Indian Knowledge System",
+    "credits": 0
+  },
+  {
+    "subject_code": "BCG701",
+    "semester": 7,
+    "subject_name": "Robotic Process Automation Design and Development (UiPath)",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS702",
+    "semester": 7,
+    "subject_name": "Parallel Computing",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCS703",
+    "semester": 7,
+    "subject_name": "Cryptography & Network Security",
+    "credits": 4
+  },
+  {
+    "subject_code": "BCG714x",
+    "semester": 7,
+    "subject_name": "Professional Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BXX755x",
+    "semester": 7,
+    "subject_name": "Open Elective Course",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG786",
+    "semester": 7,
+    "subject_name": "Major Project Phase-II",
+    "credits": 6
+  }
+]

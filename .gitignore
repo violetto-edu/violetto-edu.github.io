@@ -1,0 +1,14 @@
+# Obsidian folder
+.obsidian/
+
+# Config
+.hintrc
+
+# Node modules
+node_modules/
+
+# IDE configuration
+.vscode/
+
+# API configuration
+config.js

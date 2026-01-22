@@ -1,0 +1,50 @@
+[
+  {
+    "subject_code": "BMATS101",
+    "semester": 1,
+    "subject_name": "Mathematics-I for CSE Stream",
+    "credits": 4
+  },
+  {
+    "subject_code": "BPHYS102", 
+    "semester": 1,
+    "subject_name": "Applied Physics for CSE stream",
+    "credits": 4
+  },
+  {
+    "subject_code": "BPOPS103",
+    "semester": 1,
+    "subject_name": "Principles of Programming Using C",
+    "credits": 3
+  },
+  {
+    "subject_code": "BESCK104x",
+    "semester": 1,
+    "subject_name": "Engineering Science Course-I",
+    "credits": 3
+  },
+  {
+    "subject_code": "BETCK105x / BPLCK105x",
+    "semester": 1,
+    "subject_name": "Emerging Technology Course-I / Programming Languages Course-I ",
+    "credits": 3
+  },
+  {
+    "subject_code": "BENGK106 / BPWSK106",
+    "semester": 1,
+    "subject_name": "Communicative English / Professional Writing Skills in English",
+    "credits": 1
+  },
+  {
+    "subject_code": "BKSKK107x / BKBKK107x / BICOK107",
+    "semester": 1,
+    "subject_name": "Samskrutika Kannada / Balake Kannada / Indian Constitution",
+    "credits": 1
+  },
+  {
+    "subject_code": "BIDTK158 / BSFHK158",
+    "semester": 1,
+    "subject_name": "Innovation and Design Thinking / Scientific Foundations of Health",
+    "credits": 1
+  }
+]

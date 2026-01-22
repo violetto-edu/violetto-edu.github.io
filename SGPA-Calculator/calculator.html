@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGPA Calculator</title>
+    <meta name="author" content="Manju Madhav V A" />
+    <meta
+      name="description"
+      content="Manually calculate your SGPA or CGPA with my user-friendly SGPA Calculator. Calculation is done using VTU 2021 scheme point scale. Perfect for students to track their academic performance." />
+    <meta
+      name="keywords"
+      content="SGPA, CGPA, Calculator, Student, Academic, Performance, Grade, Semester, VTU, 2021, 2022, Manual Entry" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: [
+                'Inter Variable',
+                'Inter',
+                'system-ui',
+                '-apple-system',
+                'sans-serif'
+              ]
+            },
+            lineHeight: {
+              tight: '1.1',
+              snug: '1.2',
+              normal: '1.4',
+              relaxed: '1.5',
+              loose: '1.6'
+            },
+            letterSpacing: {
+              tighter: '-0.025em',
+              tight: '-0.015em',
+              normal: '0em',
+              wide: '0.015em',
+              wider: '0.025em'
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <style>
+      /* Inter OpenType Features */
+      .font-inter {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+        font-variation-settings: 'slnt' 0;
+      }
+
+      /* Enhanced typography classes */
+      .text-display {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+        font-variation-settings: 'slnt' 0;
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+      }
+
+      .text-heading {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+        font-variation-settings: 'slnt' 0;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+      }
+
+      .text-body {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'kern', 'liga';
+        font-variation-settings: 'slnt' 0;
+        letter-spacing: 0em;
+        line-height: 1.5;
+      }
+
+      .text-caption {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum';
+        font-variation-settings: 'slnt' 0;
+        letter-spacing: 0.015em;
+        line-height: 1.4;
+      }
+
+      /* Form elements typography */
+      .form-text {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'kern';
+        font-variation-settings: 'slnt' 0;
+        letter-spacing: 0em;
+        line-height: 1.4;
+      }
+
+      /* Numeric text */
+      .text-numeric {
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum', 'kern';
+        font-variation-settings: 'slnt' 0;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+    <script type="module" src="JS/main.js"></script>
+  </head>
+  <body
+    class="font-inter min-h-screen bg-fuchsia-50 dark:bg-gray-900 flex flex-col">
+    <!-- Navigation Controls -->
+    <div
+      class="flex justify-between items-center gap-2 lg:fixed lg:top-4 lg:left-4 lg:right-4 lg:z-50 mb-4 lg:mb-0">
+      <!-- Back Button -->
+      <a
+        href="index.html"
+        class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
+        aria-label="Back to home">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6 text-gray-800 dark:text-gray-200">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <!-- Dark Mode Toggle -->
+        <button
+          id="darkModeToggle"
+          class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
+          aria-label="Toggle dark mode">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 text-gray-800 dark:hidden">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 text-gray-200 hidden dark:block">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+        </button>
+
+        <!-- Hamburger Menu Button -->
+        <button
+          id="menuToggle"
+          class="p-2 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
+          aria-label="Toggle menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 text-gray-800 dark:text-gray-200">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div
+      id="sidebarMenu"
+      class="fixed inset-0 bg-black bg-opacity-50 z-[60] transition-opacity duration-300 opacity-0 pointer-events-none">
+      <div
+        class="fixed right-0 top-4 w-72 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg rounded-lg shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Sidebar Header -->
+        <div
+          class="flex items-center justify-between p-5 border-b border-gray-200 dark:border-gray-700">
+          <h2
+            class="text-lg font-bold text-gray-800 dark:text-gray-200 text-heading">
+            Menu
+          </h2>
+          <button
+            id="closeSidebar"
+            class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+            aria-label="Close menu">
+            <svg
+              class="w-6 h-6 text-gray-600 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menu Items -->
+        <nav class="p-5 space-y-2">
+          <!-- Home Link -->
+          <a
+            href="../"
+            class="flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 group">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#fff"
+                class="size-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+              </svg>
+            </div>
+            <span
+              class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 font-semibold text-body"
+              >Home</span
+            >
+          </a>
+
+          <!-- Calculator Section -->
+          <div class="pt-3 pb-1">
+            <h3
+              class="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              SGPA Calculator
+            </h3>
+          </div>
+
+          <a
+            href="index.html"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#fff"
+                class="size-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+              </svg>
+            </div>
+            <span
+              class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 font-medium"
+              >SGPA Calculator</span
+            >
+          </a>
+
+          <div
+            class="current-page p-3 rounded-lg bg-fuchsia-100 dark:bg-fuchsia-900/30 border border-fuchsia-200 dark:border-fuchsia-700">
+            <div class="flex items-center space-x-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#fff"
+                  class="size-6">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V18Zm2.498-6.75h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V13.5Zm0 2.25h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V18Zm2.504-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V18Zm2.498-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5ZM8.25 6h7.5v2.25h-7.5V6ZM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0 0 12 2.25Z" />
+                </svg>
+              </div>
+              <span class="text-fuchsia-700 dark:text-fuchsia-300 font-medium"
+                >Manual Calculator</span
+              >
+            </div>
+          </div>
+
+          <!-- Other Apps Section -->
+          <div class="pt-3 pb-1">
+            <h3
+              class="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              Other Apps
+            </h3>
+          </div>
+
+          <a
+            href="../UI-UX/"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#fff"
+                class="size-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+              </svg>
+            </div>
+            <span
+              class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 font-medium"
+              >UI/UX Tutorials</span
+            >
+          </a>
+
+          <a
+            href="../Gen-AI/"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#fff"
+                class="size-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+              </svg>
+            </div>
+            <span
+              class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 font-medium"
+              >Generative AI Lab</span
+            >
+          </a>
+
+          <a
+            href="../ML/"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#fff"
+                class="size-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
+              </svg>
+            </div>
+            <span
+              class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100 font-medium"
+              >Machine Learning Lab</span
+            >
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="flex-1 flex flex-col">
+      <div class="max-w-6xl w-full mx-auto space-y-8 pb-20 lg:pt-20 flex-1 flex flex-col justify-center">
+        <div class="text-center space-y-6">
+          <h1
+            class="text-5xl font-bold text-fuchsia-800 dark:text-fuchsia-400 text-display">
+            SGPA Calculator
+          </h1>
+          <p
+            class="text-xl text-gray-600 dark:text-gray-300 text-body max-w-2xl mx-auto">
+            Calculate Your SGPA or CGPA by Entering Subject Details
+          </p>
+        </div>
+
+        <form
+          id="sgpaForm"
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
+          <div class="space-y-8">
+            <div class="flex justify-center gap-8">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="gradeType"
+                  value="sgpa"
+                  checked
+                  class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400 w-4 h-4" />
+                <span
+                  class="text-gray-700 dark:text-gray-300 text-body font-medium"
+                  >SGPA</span
+                >
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="gradeType"
+                  value="cgpa"
+                  class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 dark:text-fuchsia-400 dark:focus:ring-fuchsia-400 w-4 h-4" />
+                <span
+                  class="text-gray-700 dark:text-gray-300 text-body font-medium"
+                  >CGPA</span
+                >
+              </label>
+            </div>
+
+            <div id="semesterContainer" class="space-y-3">
+              <label
+                for="semester"
+                class="block text-sm font-semibold text-gray-700 dark:text-gray-300 text-caption">
+                Select your semester
+              </label>
+              <select
+                id="semester"
+                name="semester"
+                class="block w-full px-4 py-3 rounded-xl border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 form-text font-medium">
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3" selected>3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+              </select>
+            </div>
+
+            <div id="branchContainer" class="space-y-3">
+              <label
+                for="branch"
+                class="block text-sm font-semibold text-gray-700 dark:text-gray-300 text-caption">
+                Select your branch
+              </label>
+              <select
+                id="branch"
+                name="branch"
+                class="block w-full px-4 py-3 rounded-xl border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 form-text font-medium">
+                <option value="cse">Computer Science and Engineering</option>
+                <option value="ise">Information Science and Engineering</option>
+                <option value="aiml">
+                  Artificial Intelligence and Machine Learning
+                </option>
+                <option value="csd">Computer Science and Design</option>
+                <option value="csds">
+                  Computer Science and Engineering (Data Science)
+                </option>
+                <option value="ece">
+                  Electronics and Communication Engineering
+                </option>
+                <option value="eee">
+                  Electrical and Electronics Engineering
+                </option>
+                <option value="me">Mechanical Engineering</option>
+                <option value="cv">Civil Engineering</option>
+              </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center pt-4">
+              <button
+                type="button"
+                id="submitBtn"
+                class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-fuchsia-600 dark:bg-fuchsia-500 hover:bg-fuchsia-700 dark:hover:bg-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition-all duration-200 text-body shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div
+          id="subjectTableContainer"
+          class="rounded-lg shadow-lg overflow-auto"></div>
+        <div
+          id="result"
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center space-y-4">
+          <h2
+            class="text-2xl font-semibold text-gray-800 dark:text-gray-200"></h2>
+          <h3
+            id="totalMarks"
+            class="text-xl text-gray-700 dark:text-gray-300"></h3>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-3 px-4 z-50 transition-transform duration-300 ease-in-out">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-left">
+          <small class="text-gray-600 dark:text-gray-400 text-caption">
+            Note: This calculator follows the VTU 2021/2022 scheme grading
+            scale. For detailed information, refer to
+            <a
+              href="https://vtu.ac.in/pdf/regulations2021/finalreg2021.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-fuchsia-600 dark:text-fuchsia-400 hover:underline">
+              VTU Regulations 2021</a
+            >
+          </small>
+        </div>
+
+        <div class="flex w-full md:w-auto gap-4 justify-between items-center">
+          <!-- Privacy Policy Button -->
+          <div class="flex items-center">
+            <button
+              id="privacyPolicyBtn"
+              class="px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-fuchsia-600 dark:hover:text-fuchsia-400 transition-colors duration-200 border border-gray-300 dark:border-gray-600 rounded-md hover:border-fuchsia-300 dark:hover:border-fuchsia-500">
+              Privacy Policy
+            </button>
+          </div>
+
+          <div class="flex items-center justify-center">
+            <small
+              class="text-gray-600 dark:text-gray-400 whitespace-nowrap text-caption">
+              Made with ❤️ by
+              <a
+                href="https://manjumadhav.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-fuchsia-600 dark:text-fuchsia-400 hover:underline font-medium">
+                Violet
+              </a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div
+      id="privacyModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+      <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+        <div
+          class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+          <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+            Privacy Policy
+          </h2>
+          <button
+            id="closePrivacyModal"
+            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
+            aria-label="Close privacy policy">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="p-6 overflow-y-auto max-h-[60vh] space-y-4 text-sm text-gray-600 dark:text-gray-300">
+          <div class="space-y-3">
+            <h3 class="font-semibold text-gray-800 dark:text-gray-200">
+              Data Collection and Processing
+            </h3>
+            <p>
+              We are committed to protecting your privacy. This calculator
+              operates with a strict no-data-collection policy:
+            </p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>
+                <strong>No Server Uploads:</strong> All PDF processing happens
+                entirely in your browser using client-side JavaScript
+              </li>
+              <li>
+                <strong>No Data Storage:</strong> Your academic data, PDFs, and
+                calculation results are never saved or stored anywhere
+              </li>
+              <li>
+                <strong>No Analytics:</strong> We do not use Google Analytics,
+                tracking pixels, or any user behavior monitoring tools
+              </li>
+              <li>
+                <strong>No Third-Party Services:</strong> Your data never leaves
+                your device or gets sent to external services
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="font-semibold text-gray-800 dark:text-gray-200">
+              Local Storage & Technical Implementation
+            </h3>
+            <p>The only data we store locally on your device is:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>
+                <strong>Theme Preference:</strong> Whether you prefer light or
+                dark mode (stored in browser localStorage)
+              </li>
+              <li>
+                <strong>Session Data:</strong> Temporary PDF extraction results
+                during your session (automatically cleared when you close the
+                browser)
+              </li>
+            </ul>
+            <p class="mt-4">Our privacy-first approach is built into the application architecture:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>
+                <strong>Client-Side Processing:</strong> PDF.js library
+                processes documents entirely in your browser
+              </li>
+              <li>
+                <strong>No Network Requests:</strong> Apart from loading the
+                application itself, no data is transmitted over the internet
+              </li>
+              <li>
+                <strong>Static Hosting:</strong> The application is hosted as
+                static files with no server-side processing
+              </li>
+              <li>
+                <strong>Open Source:</strong> All code is transparent and can be
+                audited on GitHub
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="font-semibold text-gray-800 dark:text-gray-200">
+              Data Security
+            </h3>
+            <p>Your academic information remains secure because:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>
+                <strong>No Data Transmission:</strong> Your PDFs and grades
+                never leave your device
+              </li>
+              <li>
+                <strong>Browser Security:</strong> Modern browser sandboxing
+                protects your data from external access
+              </li>
+              <li>
+                <strong>No Cookies:</strong> We don't use tracking cookies or
+                persistent identifiers
+              </li>
+              <li>
+                <strong>HTTPS Only:</strong> All connections are encrypted and
+                secure
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+            <p class="text-green-800 dark:text-green-300 font-medium">
+              <strong>Bottom Line:</strong> Your academic data is completely
+              private, secure, and never leaves your device. We have no access
+              to your PDFs, grades, or personal information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

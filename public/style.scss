@@ -1,0 +1,169 @@
+// Simple & Elegant Design - Violetto Edu
+
+// CSS Variables for Light/Dark Mode
+:root {
+  --primary: #6366f1;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --bg-white: #ffffff;
+  --bg-gray: #f8fafc;
+  --border-color: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-dark: #f1f5f9;
+    --text-light: #cbd5e1;
+    --bg-white: #1e293b;
+    --bg-gray: #0f172a;
+    --border-color: #334155;
+  }
+}
+
+// SCSS Variables (for compatibility)
+$primary: var(--primary);
+$text-dark: var(--text-dark);
+$text-light: var(--text-light);
+$bg-white: var(--bg-white);
+$bg-gray: var(--bg-gray);
+$border-color: var(--border-color);
+
+// Spacing
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2rem;
+$space-xl: 3rem;
+
+// Fonts
+$font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-body: 'Merriweather', Georgia, serif;
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  color: $text-dark;
+  background: $bg-gray;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+// Layout
+.main-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $space-xl $space-md;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $space-xl;
+}
+
+// Header
+.page-header {
+  text-align: center;
+  padding: $space-lg 0;
+}
+
+.page-title {
+  font-family: $font-heading;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: $text-dark;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+// Apps Grid
+.apps-section {
+  width: 100%;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $space-md;
+
+  @media (min-width: 768px) {
+    gap: $space-lg;
+  }
+}
+
+// App Card
+.app-item {
+  background: $bg-white;
+  border-radius: 1rem;
+  padding: $space-lg;
+  text-decoration: none;
+  color: $text-dark;
+  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 240px;
+  justify-content: center;
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+// Icon
+.app-icon {
+  margin-bottom: $space-md;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-gray;
+  border-radius: 0.75rem;
+  font-size: 2rem;
+  color: $primary;
+}
+
+// Title
+.app-title {
+  font-family: $font-heading;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: $space-xs;
+  color: $text-dark;
+}
+
+// Description
+.app-description {
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  color: $text-light;
+  line-height: 1.5;
+}
+
+// Responsive
+@media (max-width: 640px) {
+  .main-wrapper {
+    padding: $space-lg $space-sm;
+  }
+
+  .apps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-item {
+    min-height: 200px;
+    padding: $space-md;
+  }
+}

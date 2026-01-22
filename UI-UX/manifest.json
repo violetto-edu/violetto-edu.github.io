@@ -1,0 +1,19 @@
+{
+  "name": "UI/UX Tutorials",
+  "short_name": "UI/UX Tutorials",
+  "description": "A departmental UI/UX tutorial site for students.",
+  "id": "com.violetto-edu.UI-UX",
+  "start_url": "https://violetto-edu.github.io/UI-UX/",
+  "orientation": "natural",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "public/icon/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generative AI</title>
+  <meta name="author" content="Manju Madhav V A" />
+  <meta name="description" content="A program for Generative AI covering various lab programs." />
+  <meta name="keywords"
+    content="Generative AI, Gen AI, AI, Word Vector Exploration, Visualizing Word Embeddings, Custom Word2Vec Model, Enhancing AI Prompts, Creative Writing with Embeddings, Sentiment Analysis with Hugging Face, Text Summarization, Document Q&A with LangChain, Institution Info Extraction, Indian Penal Code Chatbot" />
+  <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+  <link rel="preload" href="https://fonts.cdnfonts.com/css/poppins" as="style" />
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/poppins" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fontsource/funnel-display@5.2.5/index.min.css" as="style" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/funnel-display@5.2.5/index.min.css" />
+  <link rel="preload" href="https://fonts.cdnfonts.com/css/jetbrains-mono" as="style" />
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/jetbrains-mono" />
+  <link rel="stylesheet" href="../public/aurora.css" />
+  <link rel="stylesheet" href="public/CSS/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
+    integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
+    crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+    defer></script>
+  <script type="module" src="public/JS/main.js"></script>
+  <script src="https://kit.fontawesome.com/b6a5c8db62.js" crossorigin="anonymous" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <aside id="navbar">
+      <div class="navbar-content">
+        <h1>Generative AI</h1>
+        <button class="toggle search-toggle" id="search-toggle" aria-label="Toggle search">
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        </button>
+        <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+          <i class="fa-solid fa-bars fa-lg"></i>
+        </button>
+        <button class="toggle more" id="mobile" aria-label="More options">
+          <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
+        </button>
+        <div class="search-container">
+          <span class="search-icon"><i class="fas fa-search"></i></span>
+          <input type="text" id="search-input" placeholder="Search programs..." />
+          <span class="search-shortcut-hint">Ctrl +&nbsp;
+            <div class="box">K</div>
+          </span>
+        </div>
+      </div>
+      <button class="toggle more" id="pc" aria-label="More options">
+        <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
+      </button>
+    </aside>
+    <div id="search-results"></div>
+    <div class="subcontainer">
+      <main id="sidebar">
+        <ul id="program-list" class="skeleton-content">
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+          <li class="skeleton skeleton-li"></li>
+        </ul>
+      </main>
+      <main id="content">
+        <div id="program-content" class="skeleton-content">
+          <div class="skeleton skeleton-header"></div>
+          <div class="skeleton-paragraph">
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+          </div>
+          <br />
+          <div class="skeleton skeleton-header"></div>
+          <div class="skeleton-paragraph">
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="copyright-footer">
+      <p>
+        Content credited to the Dr.&nbsp;Pramod. Made by
+        <a target="_blank" href="https://manjumadhav.vercel.app" rel="noopener noreferrer">Violet</a>
+      </p>
+    </footer>
+  </div>
+  <div class="menu">
+    <button id="close-menu" aria-label="Close Menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <p>Check Out My Other Applications</p>
+    <div class="menu-list">
+      <a href="../UI-UX/" class="card uiux-card gradient-card">
+        <h1>UI/UX Tutorials</h1>
+        <div class="aurora" id="uiux-card-aurora">
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+        </div>
+      </a>
+      <a href="../ML/" class="card ml-card">
+        <h1>Machine Learning Lab</h1>
+      </a>
+      <a href="../SGPA-Calculator/" class="card sgpa-card">
+        <h1>SGPA Calculator</h1>
+      </a>
+      <a href="../" class="card home-card gradient-card">
+        <h1>Home</h1>
+        <div class="aurora" id="home-card-aurora">
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+          <div class="aurora__item"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>
