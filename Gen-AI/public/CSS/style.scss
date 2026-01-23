@@ -1,7 +1,7 @@
 :root {
   // Fonts
   --display: "Funnel Display", sans-serif;
-  --sans: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: "Nunito", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --code: "JetBrains Mono", monospace;
 
   // Background - Deep slate with subtle blue tint
@@ -161,7 +161,7 @@ html {
           .box {
             border: 1px solid var(--border-light);
             background: var(--bg-quaternary);
-            border-radius: 2px;
+            border-radius: 0.1rem;
             padding: 0 0.25rem;
           }
         }
@@ -189,7 +189,7 @@ html {
     @media (width <=1080px) {
       display: flex;
       align-items: center;
-      padding: 20px;
+      padding: 1rem;
 
       .navbar-content {
         display: grid;
@@ -283,8 +283,6 @@ html {
 
         &.active {
           background: var(--active-bg);
-          color: var(--active-accent);
-          border-left: 3px solid var(--active-accent);
         }
       }
 
@@ -344,6 +342,7 @@ html {
         }
 
         a {
+          color: var(--text-secondary);
           text-decoration: none;
           transition: color 0.2s ease;
 
@@ -352,10 +351,22 @@ html {
           }
         }
 
+        blockquote {
+          border-left: 0.5rem solid var(--bg-quaternary);
+          background: var(--bg-tertiary);
+          margin: 0;
+          padding: 1rem 1rem 1rem 1.5rem;
+          border-radius: 1rem;
+
+          p {
+            margin: 0;
+          }
+        }
+
         hr {
           border: none;
           border-top: 1px solid var(--divider-color);
-          margin: 20px 0;
+          margin: 1rem 0;
         }
 
         img {
@@ -396,12 +407,11 @@ html {
         code {
           font-family: var(--code);
           font-size: 1rem;
-          border-radius: 5px;
+          border-radius: 0.1rem;
           letter-spacing: -0.02em;
           white-space: pre-wrap;
           word-wrap: break-word;
           overflow-wrap: break-word;
-          padding: 2px 6px;
         }
 
         .code-block-wrapper {
@@ -437,10 +447,10 @@ html {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin: 20px 0;
+            margin: 1rem 0;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 15px;
+            border-radius: 1rem;
             overflow: hidden;
 
             a {
@@ -456,7 +466,7 @@ html {
 
             th,
             td {
-              padding: 15px 20px;
+              padding: 1rem 1.5rem;
               text-align: left;
               border-bottom: 1px solid var(--divider-color);
             }
@@ -476,7 +486,7 @@ html {
 
             td:first-child {
               font-weight: 500;
-              width: 80px;
+              width: 8rem;
             }
           }
 
@@ -525,7 +535,7 @@ html {
           }
 
           @media (width <=1080px) {
-            margin-top: 20px;
+            margin-top: 1rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
           }
@@ -538,7 +548,7 @@ html {
     p {
       text-align: center;
       font-size: 0.8rem;
-      margin: 10px 0 0;
+      margin: 1rem 0 0;
 
       a {
         color: var(--text);
@@ -559,14 +569,14 @@ html {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  padding: 20px;
+  padding: 1rem;
   cursor: zoom-out;
 
   .enlarged-image {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 1rem;
     box-shadow: 0 4px 16px 0 #00000040;
     cursor: default;
 
@@ -585,7 +595,7 @@ html {
       var(--bg-secondary) 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
-  border-radius: 10px;
+  border-radius: 1rem;
 
 
   .skeleton-content {
@@ -596,8 +606,8 @@ html {
   .skeleton-text {
     display: flex;
     flex-direction: column;
-    height: 30px;
-    margin-bottom: 10px;
+    height: 3rem;
+    margin-bottom: 1rem;
 
     &:last-child {
       width: 80%;
@@ -605,18 +615,18 @@ html {
   }
 
   .skeleton-li {
-    height: 40px;
+    height: 4rem;
   }
 
   .skeleton-header {
-    height: 80px;
-    margin-bottom: 20px;
+    height: 8rem;
+    margin-bottom: 2rem;
   }
 
   .skeleton-paragraph {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }
 

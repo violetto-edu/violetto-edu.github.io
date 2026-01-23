@@ -1,5 +1,17 @@
 # Generative AI (BAIL657C)
 ---
+
+Imagine a student who is curious but stuck: they have ideas, scattered notes, and a deadline. A teacher wants to help, but time is limited. Generative AI can act like a patient assistant—drafting, summarizing, translating, brainstorming, and giving multiple viewpoints—so the student spends less effort on repetition and more on thinking.
+
+But it’s not “magic.” It’s a tool shaped by data, prompts, and human judgment. Used responsibly, it can amplify learning, creativity, and productivity—while still keeping the human at the center: asking better questions, checking facts, and choosing what’s meaningful.
+
+## Course objectives
+
+- Understand the principles and concepts behind generative AI models
+- Explain the knowledge gained to implement generative models using Prompt design frameworks.
+- Apply various Generative AI applications for increasing productivity.
+- Develop Large Language Model-based Apps.
+
 ## Experiments:
 
 | Sl.NO | Experiments                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -14,5 +26,19 @@
 | 8.    | [Install langchain, cohere (for key), langchain-community. Get the API key (By logging into Cohere and obtaining the cohere key). Load a text document from your google drive. Create a prompt template to display the output in a particular manner.](document-qa-langchain.md)                                                                                                                                                                   |
 | 9.    | [Take the Institution name as input. Use Pydantic to define the schema for the desired output and create a custom output parser. Invoke the Chain and Fetch Results. Extract the below Institution related details from Wikipedia: The founder of the Institution. When it was founded. The current branches in the institution. How many employees are working in it. A brief 4-line summary of the institution.](institution-info-extraction.md) |
 | 10.   | [Build a chatbot for the Indian Penal Code. We'll start by downloading the official Indian Penal Code document, and then we'll create a chatbot that can interact with it. Users will be able to ask questions about the Indian Penal Code and have a conversation with it.](ipc-chatbot.md)                                                                                                                                                       |
+
+---
+
+## Course outcomes (Course Skill Set)
+
+At the end of the course the student will be able to:
+
+- Develop the ability to explore and analyze word embeddings, perform vector arithmetic to investigate word
+relationships, visualize embeddings using dimensionality reduction techniques
+- Apply prompt engineering skills to real-world scenarios, such as information retrieval, text generation.
+- Utilize pre-trained Hugging Face models for real-world applications, including sentiment analysis and text
+summarization.
+- Apply different architectures used in large language models, such as transformers, and understand their
+advantages and limitations.
 
 ---

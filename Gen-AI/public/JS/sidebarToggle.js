@@ -38,7 +38,7 @@ export function setupSidebar() {
       sidebarToggle.classList.remove("open");
       document.body.style.overflow = "";
 
-      const barsIcon = sidebarToggle.querySelector(".fa-bars");
+      const barsIcon = sidebarToggle.querySelector(".bi-list");
       barsIcon.style.display = "flex";
     }
   });

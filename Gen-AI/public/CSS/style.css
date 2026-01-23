@@ -1,6 +1,6 @@
 :root {
   --display: "Funnel Display", sans-serif;
-  --sans: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: "Nunito", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --code: "JetBrains Mono", monospace;
   --bg-color: #0f172a;
   --bg-secondary: #1e293b;
@@ -143,7 +143,7 @@ html {
 .container #navbar .navbar-content .search-container .search-shortcut-hint .box {
   border: 1px solid var(--border-light);
   background: var(--bg-quaternary);
-  border-radius: 2px;
+  border-radius: 0.1rem;
   padding: 0 0.25rem;
 }
 @media (width <= 768px) {
@@ -168,7 +168,7 @@ html {
   .container #navbar {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 1rem;
   }
   .container #navbar .navbar-content {
     display: grid;
@@ -252,8 +252,6 @@ html {
 }
 .container .subcontainer #sidebar a.active {
   background: var(--active-bg);
-  color: var(--active-accent);
-  border-left: 3px solid var(--active-accent);
 }
 @media (width <= 1080px) {
   .container .subcontainer #sidebar {
@@ -303,16 +301,27 @@ html {
   font-size: 1.2rem;
 }
 .container .subcontainer #content #program-content a {
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .container .subcontainer #content #program-content a:hover {
   text-decoration: underline;
 }
+.container .subcontainer #content #program-content blockquote {
+  border-left: 0.5rem solid var(--bg-quaternary);
+  background: var(--bg-tertiary);
+  margin: 0;
+  padding: 1rem 1rem 1rem 1.5rem;
+  border-radius: 1rem;
+}
+.container .subcontainer #content #program-content blockquote p {
+  margin: 0;
+}
 .container .subcontainer #content #program-content hr {
   border: none;
   border-top: 1px solid var(--divider-color);
-  margin: 20px 0;
+  margin: 1rem 0;
 }
 .container .subcontainer #content #program-content img {
   width: 100%;
@@ -347,12 +356,11 @@ html {
 .container .subcontainer #content #program-content code {
   font-family: var(--code);
   font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 0.1rem;
   letter-spacing: -0.02em;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  padding: 2px 6px;
 }
 .container .subcontainer #content #program-content .code-block-wrapper {
   position: relative;
@@ -384,10 +392,10 @@ html {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 20px 0;
+  margin: 1rem 0;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 15px;
+  border-radius: 1rem;
   overflow: hidden;
 }
 .container .subcontainer #content #program-content .table-wrapper table a {
@@ -401,7 +409,7 @@ html {
 }
 .container .subcontainer #content #program-content .table-wrapper table th,
 .container .subcontainer #content #program-content .table-wrapper table td {
-  padding: 15px 20px;
+  padding: 1rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid var(--divider-color);
 }
@@ -417,7 +425,7 @@ html {
 }
 .container .subcontainer #content #program-content .table-wrapper table td:first-child {
   font-weight: 500;
-  width: 80px;
+  width: 8rem;
 }
 @media (width <= 640px) {
   .container .subcontainer #content #program-content .table-wrapper td:nth-of-type(odd),
@@ -459,7 +467,7 @@ html {
 }
 @media (width <= 1080px) {
   .container .subcontainer #content #program-content .navigation-buttons {
-    margin-top: 20px;
+    margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -467,7 +475,7 @@ html {
 .container .copyright-footer p {
   text-align: center;
   font-size: 0.8rem;
-  margin: 10px 0 0;
+  margin: 1rem 0 0;
 }
 .container .copyright-footer p a {
   color: var(--text);
@@ -485,14 +493,14 @@ html {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  padding: 20px;
+  padding: 1rem;
   cursor: zoom-out;
 }
 .image-overlay .enlarged-image {
   max-width: 90%;
   max-height: 90vh;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 1rem;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2509803922);
   cursor: default;
 }
@@ -507,7 +515,7 @@ html {
   background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 50%, var(--bg-secondary) 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 2s infinite;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 .skeleton .skeleton-content {
   display: flex;
@@ -516,23 +524,23 @@ html {
 .skeleton .skeleton-text {
   display: flex;
   flex-direction: column;
-  height: 30px;
-  margin-bottom: 10px;
+  height: 3rem;
+  margin-bottom: 1rem;
 }
 .skeleton .skeleton-text:last-child {
   width: 80%;
 }
 .skeleton .skeleton-li {
-  height: 40px;
+  height: 4rem;
 }
 .skeleton .skeleton-header {
-  height: 80px;
-  margin-bottom: 20px;
+  height: 8rem;
+  margin-bottom: 2rem;
 }
 .skeleton .skeleton-paragraph {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 @keyframes skeleton-loading {

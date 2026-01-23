@@ -89,10 +89,6 @@ td {
   display: none;
 }
 
-i.fa-solid {
-  font-size: 1em;
-}
-
 /* Experiments Grid Styles */
 .experiments-grid {
   display: grid;
