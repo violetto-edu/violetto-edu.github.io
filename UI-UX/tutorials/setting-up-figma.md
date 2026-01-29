@@ -2,7 +2,7 @@
 
 Figma is a powerful, web-based design and prototyping tool widely used by UI/UX designers for creating user interfaces, wireframes, and interactive prototypes.
 
-> <i class="fa-solid fa-triangle-exclamation"></i> **Note:** If you prefer not to use Figma and wish to explore alternative tools, you may skip this section. For instance, **[Penpot](https://penpot.app/)** is an open-source alternative for UI/UX development, and a **[setup guide](setting-up-penpot.md)** is available for it as well.
+> <i class="bi bi-exclamation-triangle"></i> **Note:** If you prefer not to use Figma and wish to explore alternative tools, you may skip this section. For instance, **[Penpot](https://penpot.app/)** is an open-source alternative for UI/UX development, and a **[setup guide](setting-up-penpot.md)** is available for it as well.
 
 ---
 ## 1. Sign Up for Figma

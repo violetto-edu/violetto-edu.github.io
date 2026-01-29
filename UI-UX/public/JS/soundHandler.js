@@ -15,8 +15,8 @@ function initSoundSettings() {
 function updateSoundToggleUI() {
   const soundToggle = document.getElementById('sound-toggle');
   if (soundToggle) {
-    const volumeHighIcon = soundToggle.querySelector('.fa-volume-high');
-    const volumeXmarkIcon = soundToggle.querySelector('.fa-volume-xmark');
+    const volumeHighIcon = soundToggle.querySelector('.bi-volume-up');
+    const volumeXmarkIcon = soundToggle.querySelector('.bi-volume-mute');
 
     if (soundEnabled) {
       if (volumeHighIcon) volumeHighIcon.style.display = 'block';

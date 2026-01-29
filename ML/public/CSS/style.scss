@@ -1,3 +1,51 @@
+// ============================================
+// Sass Variables
+// ============================================
+$breakpoint-mobile: 768px;
+$transition-base: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-slow: 0.5s ease-in-out;
+$spacing-xs: 0.25em;
+$spacing-sm: 0.5em;
+$spacing-md: 1em;
+$spacing-lg: 1.5em;
+$spacing-xl: 2em;
+$border-radius-base: 3em;
+$border-radius-small: calc($border-radius-base * 0.6);
+
+// ============================================
+// Mixins
+// ============================================
+@mixin mobile {
+  @media (width <=$breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin neumorphic-shadow($type: outset) {
+  @if $type ==outset {
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+  }
+
+  @else {
+    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+  }
+}
+
+@mixin neumorphic-button {
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+  @include neumorphic-shadow(outset);
+  transition: all $transition-base;
+  cursor: pointer;
+
+  &:active {
+    @include neumorphic-shadow(inset);
+  }
+}
+
+// ============================================
+// CSS Custom Properties (for runtime theming)
+// ============================================
 :root {
   --font1: 'DM Sans', sans-serif;
   --font2: 'Funnel Display', serif;
@@ -8,59 +56,58 @@
   --primary-color: #411371;
   --shadow-light: #fff;
   --shadow-dark: #bebebe;
-  --border-radius: 3em;
+  --border-radius: #{$border-radius-base};
   --shadow-inset: inset 5px 5px 10px var(--shadow-dark),
     inset -5px -5px 10px var(--shadow-light);
   --shadow-outset: 5px 5px 10px var(--shadow-dark),
     -5px -5px 10px var(--shadow-light);
 }
 
+// ============================================
+// Base Styles
+// ============================================
 * {
   box-sizing: border-box;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all $transition-base;
 }
 
 body {
   font-family: var(--font1);
   margin: 0 auto;
-  padding: 2em;
+  padding: $spacing-xl;
   background: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
-
-  /* DM Sans optimal settings */
   font-weight: 400;
   font-optical-sizing: auto;
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'tnum' 1;
-  /* Kerning for better letter spacing */
-  /* Standard ligatures */
-  /* Contextual alternates */
-  /* Tabular numbers for consistent width */
-  /* Text rendering optimization */
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.011em;
 
-  @media (width <=768px) {
-    padding: 1em;
+  @include mobile {
+    padding: $spacing-md;
   }
 }
 
-h1 {
+// ============================================
+// Typography
+// ============================================
+body h1 {
   font-size: 2em;
-  margin: 0 0 2em;
+  margin: 0 0 $spacing-xl;
   font-weight: 500;
   text-align: center;
   color: var(--primary-color);
   letter-spacing: -0.02em;
 
-  @media (width <=768px) {
-    margin-top: 2em;
+  @include mobile {
+    margin-top: $spacing-xl;
   }
 }
 
-a {
+body a {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
@@ -70,35 +117,34 @@ a {
   }
 }
 
-ul {
-  margin: 0.5em 0;
-  padding-left: 1.5em;
+body ul {
+  margin: $spacing-sm 0;
+  padding-left: $spacing-lg;
 }
 
-li {
-  margin: 0.25em 0;
+body li {
+  margin: $spacing-xs 0;
 }
 
-/* Hide old table styles */
-table {
+// Hide old table styles
+body table,
+body th,
+body td {
   display: none;
 }
 
-th,
-td {
-  display: none;
-}
-
-/* Experiments Grid Styles */
+// ============================================
+// Experiments Grid
+// ============================================
 .experiments-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 2em;
-  margin: 2em 0;
+  gap: $spacing-xl;
+  margin: $spacing-xl 0;
 
-  @media (width <=768px) {
+  @include mobile {
     grid-template-columns: 1fr;
-    gap: 1.5em;
+    gap: $spacing-lg;
   }
 }
 
@@ -107,11 +153,11 @@ td {
   flex-direction: column;
   background: var(--bg-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-outset);
-  padding: 1.5em;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  @include neumorphic-shadow(outset);
+  padding: $spacing-lg;
+  transition: all $transition-base;
 
-  @media (width <=768px) {
+  @include mobile {
     padding: 1.25em;
   }
 }
@@ -124,13 +170,13 @@ td {
   height: 2.5em;
   background: var(--bg-color);
   border-radius: 50%;
-  box-shadow: var(--shadow-inset);
+  @include neumorphic-shadow(inset);
   color: var(--primary-color);
   font-weight: 700;
   font-size: 1.1em;
-  margin-bottom: 1em;
+  margin-bottom: $spacing-md;
 
-  @media (width <=768px) {
+  @include mobile {
     width: 2em;
     height: 2em;
     font-size: 1em;
@@ -145,7 +191,7 @@ td {
   line-height: 1.3;
   letter-spacing: -0.015em;
 
-  @media (width <=768px) {
+  @include mobile {
     font-size: 1.1em;
   }
 }
@@ -155,10 +201,10 @@ td {
   color: var(--text-color);
   font-size: 0.9em;
   line-height: 1.5;
-  margin: 0 0 1.5em;
+  margin: 0 0 $spacing-lg;
   font-weight: 400;
 
-  @media (width <=768px) {
+  @include mobile {
     font-size: 0.85em;
   }
 }
@@ -167,54 +213,42 @@ td {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75em;
+}
 
-  a {
-    display: inline-block;
-    padding: 0.5em 1em;
-    background: var(--bg-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-outset);
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 0.85em;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+.experiment-links a {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  @include neumorphic-button;
+  color: var(--primary-color);
+  font-size: 0.85em;
 
-    &:active {
-      box-shadow: var(--shadow-inset);
-    }
-
-    @media (width <=768px) {
-      font-size: 0.8em;
-      padding: 0.4em 0.8em;
-    }
+  @include mobile {
+    font-size: 0.8em;
+    padding: 0.4em 0.8em;
   }
 }
 
+// ============================================
+// Buttons
+// ============================================
 #more-options-toggle {
   all: unset;
   position: absolute;
-  top: 2em;
-  right: 2em;
+  top: $spacing-xl;
+  right: $spacing-xl;
   width: 3em;
   height: 3em;
   border: none;
-  background: var(--bg-color);
+  @include neumorphic-button;
   border-radius: 50%;
-  box-shadow: var(--shadow-outset);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.5s ease-in-out;
+  transition: all $transition-slow;
 
-  &:active {
-    box-shadow: var(--shadow-inset);
-  }
-
-  @media (width <=768px) {
-    position: absolute;
-    top: 1em;
-    right: 1em;
+  @include mobile {
+    top: $spacing-md;
+    right: $spacing-md;
   }
 }
 
@@ -223,61 +257,54 @@ td {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  padding: 1em 1.2em;
-  margin: 1em auto;
+  padding: $spacing-md 1.2em;
+  margin: $spacing-md auto;
   border: none;
-  background: var(--bg-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-outset);
+  @include neumorphic-button;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: pointer;
   color: var(--primary-color);
   outline: none;
 
   &:active {
-    box-shadow: var(--shadow-inset);
     transform: translateY(1px);
     opacity: 0.8;
   }
-
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-    white-space: nowrap;
-  }
 }
 
-.copyright-footer {
-  p {
-    text-align: center;
-    font-size: 0.8em;
-    color: var(--text-color);
-  }
+#download-all-resources a {
+  color: var(--primary-color);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-/**************  */
-/* Menu Styles */
-/**************  */
+.copyright-footer p {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--text-color);
+}
 
+// ============================================
+// Menu Styles
+// ============================================
 .menu {
   font-family: var(--font2);
   background-color: var(--bg-color);
   z-index: 3;
+}
 
-  #close-menu {
-    color: var(--text-color);
-    background: var(--bg-color);
-    box-shadow: var(--shadow-outset);
-    z-index: 4;
+#close-menu {
+  color: var(--text-color);
+  background: var(--bg-color);
+  @include neumorphic-shadow(outset);
+  z-index: 4;
 
-    &:active {
-      box-shadow: var(--shadow-inset);
-    }
+  &:active {
+    @include neumorphic-shadow(inset);
   }
+}
 
-  .card {
-    border-radius: calc(var(--border-radius) * 0.6);
-    box-shadow: var(--shadow-outset) var(--shadow-inset);
-  }
+.menu .card {
+  border-radius: $border-radius-small;
+  box-shadow: var(--shadow-outset) var(--shadow-inset);
 }

@@ -27,6 +27,7 @@ export function initializeAuth() {
                 <div class="popup"></div>
                 <button type="submit" id="submit" class="button">Login</button>
             </form>
+            <hr />
         </div>
     `;
 
@@ -34,6 +35,7 @@ export function initializeAuth() {
         <div class="admin-panel">
             <button class="button" id="dashboard-btn">Dashboard</button>
             <button class="button" id="signout-btn">Sign Out</button>
+            <hr />
         </div>
     `;
 
@@ -78,7 +80,7 @@ export function initializeAuth() {
       default:
         errorMessage = 'An error occurred. Please try again.';
     }
-    element.innerHTML = `<i class="fa-solid fa-triangle-exclamation fa-xl"></i><p>${errorMessage}</p>`;
+    element.innerHTML = `<i class="bi bi-exclamation-triangle"></i><p>${errorMessage}</p>`;
     element.style.opacity = '1';
     element.style.transform = 'translateY(0)';
     setTimeout(() => {

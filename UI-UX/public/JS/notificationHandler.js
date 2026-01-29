@@ -52,7 +52,7 @@ export function showUpdateNotification() {
         notification.className = 'update-notification';
         notification.innerHTML = `
                     <p>${notificationData.description} <a href="${notificationData.link}">${notificationData.linkName}</a></p>
-                    <button class="close-notification">&times;</button>
+                    <button class="close-notification"><i class="bi bi-x-lg"></i></button>
                     <div class="notification-progress-bar">
                       <div class="notification-progress-fill"></div>
                     </div>

@@ -1,0 +1,191 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+// ============================================
+// Sidebar & Search
+// ============================================
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-xl;
+  width: 15rem;
+  min-width: 15rem;
+  max-width: 15rem;
+  max-height: 100vh;
+  position: relative;
+}
+
+@include large {
+  #sidebar {
+    position: fixed;
+    width: auto;
+    left: -100%;
+    background: var(--background-tertiary);
+    transition: left 0.3s ease;
+    z-index: $z-index-overlay;
+    border-radius: $border-radius-md;
+    height: calc(100vh - ($spacing-xl * 4));
+    padding: $spacing-md;
+    margin: $spacing-2xl;
+
+    &.open {
+      left: 0;
+    }
+  }
+}
+
+@include mobile {
+  #sidebar {
+    margin: $spacing-sm;
+    height: calc(100vh - ($spacing-xl * 5));
+  }
+}
+
+// ============================================
+// Brand & Title
+// ============================================
+.brand {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: map.get($fonts, 'display');
+  color: var(--primary);
+  margin: 0;
+  padding: $spacing-md $spacing-2xl;
+  margin-bottom: $spacing-sm;
+  border-radius: $border-radius-md;
+
+  .title {
+    font-size: 2.5rem;
+    cursor: pointer;
+    position: relative;
+    @include no-select;
+
+    .admin-mode {
+      color: var(--text-inverted);
+    }
+  }
+}
+
+// ============================================
+// Search Container
+// ============================================
+.search-container {
+  width: 100%;
+
+  .search {
+    position: relative;
+    border-radius: $border-radius-md;
+    background: var(--background-secondary);
+    box-sizing: border-box;
+
+    .search-icon {
+      position: absolute;
+      left: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text);
+    }
+
+    #search-input {
+      box-sizing: border-box;
+      font-family: inherit;
+      width: 100%;
+      outline: none;
+      padding: $spacing-sm $spacing-sm $spacing-sm $spacing-3xl;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      border-radius: $border-radius-md;
+      @include focus-visible;
+    }
+  }
+}
+
+.search-shortcut-hint {
+  display: none;
+}
+
+@include large-up {
+  .search-shortcut-hint {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    opacity: 0.7;
+    font-size: 0.8em;
+    pointer-events: none;
+    transition: opacity $transition-base;
+  }
+}
+
+#search-input:focus+.search-shortcut-hint,
+#search-results[style*='display: block']~.search-shortcut-hint {
+  opacity: 0;
+}
+
+.box {
+  border: 1px solid var(--text-muted);
+  background: var(--background-primary);
+  border-radius: $border-radius-xxs;
+  padding: 0 $spacing-xxs;
+}
+
+// ============================================
+// Search Results
+// ============================================
+#search-results {
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  border-radius: $border-radius-sm;
+  margin-top: $spacing-sm;
+  max-height: 16rem;
+  overflow-y: auto;
+  transition: max-height $transition-base, margin-top $transition-base;
+
+  div {
+    padding: $spacing-sm $spacing-md;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--secondary);
+    }
+  }
+}
+
+// ============================================
+// Tutorial List
+// ============================================
+#tutorial-list {
+  overflow-y: auto;
+  border-radius: $border-radius-sm;
+  list-style-type: none;
+  padding: 0;
+  margin: $spacing-sm 0 0 0;
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-primary);
+    display: block;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-sm;
+    transition: background 0.3s ease;
+    @include focus-visible;
+
+    &:hover {
+      background: var(--background-secondary);
+      color: var(--text-primary);
+    }
+
+    &.active {
+      background: var(--secondary);
+    }
+  }
+}

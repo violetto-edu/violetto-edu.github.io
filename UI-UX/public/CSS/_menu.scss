@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+// ============================================
+// Menu & Navigation Cards
+// ============================================
+
+.menu {
+  font-family: map.get($fonts, 'display');
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-tertiary);
+  z-index: $z-index-modal;
+  @include flex-center;
+  flex-direction: column;
+  transform: translateY(-150%);
+  transition: transform $transition-slow;
+
+  &.active {
+    transform: translateY(0);
+  }
+
+  #close-menu {
+    all: unset;
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    width: 2.5rem;
+    height: 2.5rem;
+    @include flex-center;
+    cursor: pointer;
+    color: var(--text-primary);
+    border-radius: $border-radius-lg;
+    aspect-ratio: 1/1;
+
+    &:hover {
+      background: var(--background-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-primary);
+    }
+  }
+
+  h1 {
+    font-family: map.get($fonts, 'display');
+  }
+}

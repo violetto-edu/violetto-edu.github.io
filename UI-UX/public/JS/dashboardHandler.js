@@ -16,10 +16,10 @@ export class DashboardHandler {
     this.dashboard.innerHTML = `
                 <div class="dashboard-header">
                     <h2>Dashboard</h2>
-                    <button class="toggle" id="close-dashboard" aria-label="Close dashboard"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="toggle" id="close-dashboard" aria-label="Close dashboard"><i class="bi bi-x-lg"></i></button>
                 </div>
                 <div class="dashboard-bento">
-                    <div class="bento-box glass notification-form-section">
+                    <div class="bento-box notification-form-section">
                         <div class="notification-form">
                             <h3>Add Notification</h3>
                             <form id="notification-form">
@@ -46,14 +46,14 @@ export class DashboardHandler {
                             </form>
                         </div>
                     </div>
-                    <div class="bento-box glass notifications-section">
+                    <div class="bento-box notifications-section">
                         <h3>Notifications</h3>
-                        <button class="button add-notification-btn"><span class="btn-text">Add New Notification</span><i class="fa-solid fa-plus btn-icon"></i></button>
+                        <button class="button add-notification-btn"><span class="btn-text">Add New Notification</span><i class="bi bi-plus btn-icon"></i></button>
                         <div class="notifications-list-container">
                             <div class="notifications-list"></div>
                         </div>
                     </div>
-                    <div class="bento-box glass stats-section">
+                    <div class="bento-box stats-section">
                         <h3>Statistics</h3>
                         <div class="stats-content">
                             <p>Active Notifications: <span id="active-notifications">0</span></p>
@@ -192,7 +192,7 @@ export class DashboardHandler {
 
     const listContainer = this.dashboard.querySelector('.notifications-list');
     listContainer.innerHTML =
-      '<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin-pulse"></i></div>';
+      '<div class="loading-spinner"><i class="bi bi-arrow-clockwise"></i></div>';
 
     notificationManager.onNotificationsChange((notifications) => {
       this.renderNotifications(notifications);
@@ -233,15 +233,15 @@ export class DashboardHandler {
                 <div class="notification-content">
                     <p>${notification.description}</p>
                     <small>Expires: ${new Date(
-                      notification.expiryDate
-                    ).toLocaleString('en-GB', {
-                      day: '2-digit',
-                      month: '2-digit',
-                      year: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      hour12: false
-                    })}</small>
+          notification.expiryDate
+        ).toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        })}</small>
                 </div>
                 <div class="notification-actions">
                     <button class="button edit-btn">Edit</button>

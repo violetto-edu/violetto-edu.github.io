@@ -13,7 +13,7 @@
 ---
 ## Experiments:
 
-<i class="fa-solid fa-arrow-right"></i> Get the laboratory manual [here](https://violetto-edu.github.io/UI-UX/public/resources/UI-UX-Laboratory-Manual.pdf).
+<i class="bi bi-arrow-right"></i> Get the laboratory manual [here](https://violetto-edu.github.io/UI-UX/public/resources/UI-UX-Laboratory-Manual.pdf).
 
 | Sl.NO | Experiments (Designing and Prototyping using Figma)                                                                                                                                                                                                                                                    |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

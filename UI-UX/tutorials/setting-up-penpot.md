@@ -1,6 +1,6 @@
 # Steps to Set Up Penpot: An Open-Source Alternative to Figma
 
-> <i class="fa-solid fa-triangle-exclamation"></i> **Note:** Skip this section if you already have Figma installed and configured.
+> <i class="bi bi-exclamation-triangle"></i> **Note:** Skip this section if you already have Figma installed and configured.
 
 [Penpot](https://penpot.app/) is a web-based, open-source [design tool](https://penpot.app/design/design-tool) that serves as an excellent alternative for UI/UX development. Follow the steps below to get started:
 

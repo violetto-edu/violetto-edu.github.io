@@ -1,0 +1,368 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+// ============================================
+// Toggle Buttons & Controls
+// ============================================
+
+.toggle {
+  all: unset;
+  width: 2.5rem;
+  height: 2.5rem;
+  @include flex-center;
+  cursor: pointer;
+  color: var(--text-primary);
+  border-radius: $border-radius-lg;
+  aspect-ratio: 1/1;
+
+  &:hover {
+    background: var(--background-secondary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-muted);
+  }
+}
+
+// ============================================
+// Theme Toggle (Dark Mode)
+// ============================================
+#theme-toggle {
+
+  .bi-moon,
+  .bi-sun {
+    position: absolute;
+    transition: opacity $transition-base, transform $transition-base;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  .bi-moon {
+    display: block;
+    color: var(--text-primary);
+  }
+
+  .bi-sun {
+    display: none;
+    opacity: 0;
+    transform: rotate(180deg);
+    animation: sunRotate 10s linear infinite paused;
+  }
+
+  &.dark-mode {
+    .bi-moon {
+      opacity: 0;
+      transform: rotate(-180deg);
+    }
+
+    .bi-sun {
+      display: block;
+      opacity: 1;
+      transform: rotate(0deg);
+      animation-play-state: running;
+    }
+  }
+}
+
+@keyframes sunRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// ============================================
+// Sidebar Toggle
+// ============================================
+#sidebar-toggle {
+  display: none;
+  position: fixed;
+}
+
+@include large {
+  #sidebar-toggle {
+    display: flex;
+    left: $spacing-xl;
+    top: $spacing-xl;
+    background: var(--background-secondary);
+    border-radius: $border-radius-lg;
+    transition: left $transition-base, top $transition-base;
+
+    .bi-layout-sidebar {
+      display: block;
+    }
+
+    .bi-layout-sidebar-inset {
+      display: none;
+    }
+
+    &.open {
+      .bi-layout-sidebar {
+        display: none;
+      }
+
+      .bi-layout-sidebar-inset {
+        display: block;
+      }
+    }
+  }
+
+  #sidebar-toggle.open {
+    left: $spacing-3xl;
+    top: $spacing-3xl;
+  }
+}
+
+@include mobile {
+  #sidebar-toggle {
+    left: $spacing-sm;
+    top: $spacing-sm;
+
+    &.open {
+      left: $spacing-xl;
+      top: $spacing-xl;
+    }
+  }
+}
+// ============================================
+// Structure Toggle
+// ============================================
+#structure-toggle i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+#structure-toggle:active {
+  transform: scale(0.95);
+}
+
+#structure-toggle.open i {
+  transform: rotate(180deg);
+}
+
+// ============================================
+// Fullscreen Toggle
+// ============================================
+#fullscreen-toggle .bi-fullscreen {
+  display: block;
+}
+
+#fullscreen-toggle .bi-fullscreen-exit {
+  display: none;
+}
+
+// ============================================
+// Button Container
+// ============================================
+#button-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-md;
+}
+
+@include mobile {
+  #button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: var(--background-tertiary);
+    border: unset;
+    border-radius: unset;
+    padding: $spacing-sm;
+    z-index: $z-index-sticky;
+
+    >.toggle {
+      position: static;
+      background: unset;
+      border: unset;
+      border-radius: unset;
+      @include flex-center;
+      cursor: pointer;
+      transition: unset;
+      -webkit-backdrop-filter: unset;
+      backdrop-filter: unset;
+      box-shadow: unset;
+      overflow: hidden;
+    }
+
+    #theme-toggle:hover,
+    #theme-toggle:active,
+    #theme-toggle:focus,
+    #sidebar-toggle:hover,
+    #more-options-toggle:hover,
+    #structure-toggle:hover {
+      background: unset;
+      transform: unset;
+      box-shadow: unset;
+      animation: unset;
+    }
+
+    .miscellaneous {
+      position: fixed;
+      bottom: $spacing-xl * 3;
+      right: $spacing-sm;
+
+      .toggle {
+        background-color: var(--background-tertiary);
+      }
+    }
+  }
+}
+
+// ============================================
+// Generic Buttons
+// ============================================
+.button {
+  all: unset;
+  @include flex-center;
+  position: relative;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--text-primary);
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &.loading {
+    padding-right: $spacing-3xl;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid transparent;
+      border-top-color: var(--text-inverted);
+      border-radius: 50%;
+      animation: spinner 0.6s linear infinite;
+    }
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+// ============================================
+// Miscellaneous Controls (Sound, Info)
+// ============================================
+.miscellaneous {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-top: auto;
+}
+
+@include mobile {
+  .miscellaneous {
+    bottom: 3.75rem;
+    right: 10px;
+  }
+}
+
+#sound-toggle {
+
+  .bi-volume-up,
+  .bi-volume-mute {
+    position: absolute;
+  }
+
+  .bi-volume-up {
+    display: block;
+  }
+
+  .bi-volume-mute {
+    display: none;
+  }
+}
+
+.credits-icon {
+  display: inline-block;
+}
+
+// ============================================
+// Tooltips
+// ============================================
+.tooltip {
+  position: fixed;
+  background: var(--background-secondary);
+  color: var(--text-primary);
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-xs;
+  font-size: 0.8rem;
+  z-index: $z-index-tooltip;
+  pointer-events: none;
+  white-space: nowrap;
+
+  &-right {
+    animation: rightFadeIn 0.2s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -$spacing-xs;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: $spacing-xs $spacing-xs $spacing-xs 0;
+      border-color: transparent var(--background-secondary) transparent transparent;
+    }
+  }
+
+  &-left {
+    animation: leftFadeIn 0.2s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: -$spacing-xxs;
+      top: 50%;
+      transform: translateY(-50%);
+      border-style: solid;
+      border-width: $spacing-xs 0 $spacing-xs $spacing-xs;
+      border-color: transparent transparent transparent var(--background-secondary);
+    }
+  }
+}
+
+@keyframes rightFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX($spacing-xs);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leftFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-$spacing-xs);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,143 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+// ============================================
+// Layout - Container & Main Structure
+// ============================================
+
+.container {
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.main {
+  background: var(--background);
+  border-radius: $border-radius-xl;
+  padding: $spacing-md;
+  margin: $spacing-md 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  transition: padding-right 0.3s ease;
+  position: relative;
+}
+
+@include large {
+  .main {
+    margin: $spacing-md 0 $spacing-md $spacing-md;
+  }
+}
+
+@include mobile {
+  .main {
+    border: unset;
+    border-radius: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@include large-up {
+  .main.shifted {
+    padding-right: 20rem;
+  }
+}
+
+#content {
+  scroll-behavior: smooth;
+  flex-grow: 1;
+  padding: $spacing-2xl;
+  overflow: hidden auto;
+}
+
+@include mobile {
+  #content {
+    padding-bottom: $spacing-xl * 3;
+  }
+}
+
+// ============================================
+// Structure View (Right Panel)
+// ============================================
+#structure-view {
+  position: absolute;
+  right: -20rem;
+  top: 0;
+  width: 18rem;
+  background: var(--background-secondary);
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-md;
+  margin: $spacing-md;
+  box-sizing: border-box;
+  border-radius: $border-radius-md;
+  height: calc(100vh - ($spacing-2xl * 2));
+
+  &.open {
+    right: 0;
+  }
+}
+
+#structure-content {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  border-radius: $border-radius-sm;
+
+  .structure-item,
+  .structure-section,
+  .structure-subsection {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+
+    &.active {
+      color: var(--text-primary);
+    }
+  }
+
+  .structure-item {
+    font-size: 1.5rem;
+    padding: $spacing-sm $spacing-md;
+  }
+
+  .structure-section {
+    font-size: 1.25rem;
+    padding: $spacing-sm $spacing-md;
+  }
+
+  .structure-subsection {
+    font-size: 1.1rem;
+    padding: $spacing-xs $spacing-md;
+    margin-left: $spacing-lg;
+    border-left: 1px solid var(--text-muted);
+  }
+}
+
+@include large {
+  #structure-view {
+    z-index: $z-index-overlay;
+    right: -150%;
+    width: auto;
+
+    .structure-item:hover,
+    .structure-section:hover,
+    .structure-subsection:hover {
+      background: none;
+    }
+  }
+}
+
+@include mobile {
+  #structure-view {
+    margin: $spacing-sm;
+    right: -200%;
+    height: calc(100vh - ($spacing-lg * 4.4));
+  }
+}

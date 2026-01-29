@@ -9,8 +9,8 @@ export function setupSidebar() {
     sidebar.classList.toggle('open');
     sidebarToggle.classList.toggle('open');
 
-    const barsIcon = sidebarToggle.querySelector('.fa-bars');
-    const barsStaggeredIcon = sidebarToggle.querySelector('.fa-bars-staggered');
+    const barsIcon = sidebarToggle.querySelector('.bi-list');
+    const barsStaggeredIcon = sidebarToggle.querySelector('.bi-list-nested');
 
     if (sidebar.classList.contains('open')) {
       barsIcon.style.display = 'none';
@@ -66,9 +66,9 @@ export function setupSidebar() {
       sidebarToggle.classList.remove('open');
       document.body.style.overflow = '';
 
-      const barsIcon = sidebarToggle.querySelector('.fa-bars');
+      const barsIcon = sidebarToggle.querySelector('.bi-list');
       const barsStaggeredIcon =
-        sidebarToggle.querySelector('.fa-bars-staggered');
+        sidebarToggle.querySelector('.bi-list-nested');
       barsIcon.style.display = 'flex';
       barsStaggeredIcon.style.display = 'none';
     }

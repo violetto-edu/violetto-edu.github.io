@@ -26,7 +26,7 @@ export function populateSidebar() {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = `#${tutorial.file}`;
-    a.innerHTML = `<i class="fas fa-book-open"></i>&nbsp;${tutorial.name}`;
+    a.innerHTML = `${tutorial.name}`;
     a.onclick = (e) => {
       e.preventDefault();
       loadTutorial(tutorial.file);

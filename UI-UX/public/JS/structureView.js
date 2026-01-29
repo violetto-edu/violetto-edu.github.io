@@ -38,6 +38,10 @@ export function closeStructureView() {
   main.classList.remove('shifted');
 }
 
+// Store scroll handlers globally to allow cleanup
+let currentScrollHandler = null;
+let currentMainElement = null;
+
 export function generateStructureView(content) {
   const structureView = document.getElementById('structure-view');
   const structureContent = document.createElement('div');
@@ -54,53 +58,98 @@ export function generateStructureView(content) {
     return;
   }
 
-  const structureItems = new Map(); // Store references to structure items
-
-  // Create Intersection Observer
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const heading = entry.target;
-        const structureItem = structureItems.get(heading);
-
-        if (structureItem) {
-          if (entry.isIntersecting) {
-            // Remove highlight from all items
-            document
-              .querySelectorAll(
-                '.structure-item, .structure-section, .structure-subsection'
-              )
-              .forEach((item) => {
-                item.classList.remove('active');
-              });
-            // Add highlight to current item
-            structureItem.classList.add('active');
-
-            // Scroll the structure view to keep the active item in view
-            const itemRect = structureItem.getBoundingClientRect();
-            const containerRect = structureContent.getBoundingClientRect();
-
-            // Calculate if the item is outside the visible area
-            if (
-              itemRect.top < containerRect.top ||
-              itemRect.bottom > containerRect.bottom
-            ) {
-              // Calculate the scroll position to keep the item in the upper portion of the viewport
-              const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
-              structureContent.scrollTo({
-                top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
-                behavior: 'smooth'
-              });
-            }
-          }
-        }
-      });
-    },
-    {
-      rootMargin: '-20% 0px -70% 0px', // Adjust these values to control when the highlight triggers
-      threshold: 0
+  // Clean up previous event listeners
+  if (currentScrollHandler) {
+    window.removeEventListener('scroll', currentScrollHandler);
+    if (currentMainElement) {
+      currentMainElement.removeEventListener('scroll', currentScrollHandler);
     }
-  );
+  }
+
+  const structureItems = new Map(); // Store references to structure items
+  const observedHeadings = []; // Store all headings for querying
+  let updateTimeout = null;
+
+  // Function to update the active heading highlight
+  function updateActiveHeading() {
+    if (observedHeadings.length === 0) return;
+
+    // Define the detection zone - top 30% of viewport
+    const viewportHeight = window.innerHeight;
+    const detectionThreshold = viewportHeight * 0.3;
+
+    // Find the active heading: the last heading whose top is above the threshold
+    let targetHeading = null;
+
+    for (const heading of observedHeadings) {
+      const rect = heading.getBoundingClientRect();
+
+      // If heading is above or within the detection zone
+      if (rect.top <= detectionThreshold) {
+        targetHeading = heading;
+      } else {
+        // Once we find a heading below the threshold, stop
+        break;
+      }
+    }
+
+    // If no heading is above threshold, use the first heading
+    if (!targetHeading && observedHeadings.length > 0) {
+      targetHeading = observedHeadings[0];
+    }
+
+    if (targetHeading) {
+      const structureItem = structureItems.get(targetHeading);
+      if (structureItem && !structureItem.classList.contains('active')) {
+        // Remove highlight from all items
+        document
+          .querySelectorAll(
+            '.structure-item, .structure-section, .structure-subsection'
+          )
+          .forEach((item) => {
+            item.classList.remove('active');
+          });
+        // Add highlight to target item
+        structureItem.classList.add('active');
+
+        // Scroll the structure view to keep the active item in view
+        const itemRect = structureItem.getBoundingClientRect();
+        const containerRect = structureContent.getBoundingClientRect();
+
+        // Calculate if the item is outside the visible area
+        if (
+          itemRect.top < containerRect.top ||
+          itemRect.bottom > containerRect.bottom
+        ) {
+          // Calculate the scroll position to keep the item in the upper portion of the viewport
+          const scrollTop = structureItem.offsetTop - 100; // Offset from top to keep it visible
+          structureContent.scrollTo({
+            top: Math.max(0, scrollTop), // Ensure we don't scroll past the top
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+  }
+
+  // Use scroll event instead of IntersectionObserver for more consistent behavior
+  let scrollTimeout = null;
+  function handleScroll() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateActiveHeading, 50);
+  }
+
+  // Store handler globally for cleanup
+  currentScrollHandler = handleScroll;
+
+  // Find the scrollable element - it's #content, not main
+  currentMainElement = document.getElementById('content');
+
+  // Listen to scroll events on the content area (which is the actual scrollable element)
+  if (currentMainElement) {
+    currentMainElement.addEventListener('scroll', handleScroll);
+  }
+  window.addEventListener('scroll', handleScroll);
 
   headings.forEach((heading) => {
     const level = heading.tagName.toLowerCase();
@@ -127,9 +176,12 @@ export function generateStructureView(content) {
       structureItems.set(heading, subsection);
     }
 
-    // Observe the heading
-    observer.observe(heading);
+    // Store heading in order
+    observedHeadings.push(heading);
   });
+
+  // Initial update to highlight the first visible heading
+  updateActiveHeading();
 }
 
 function createStructureItem(text, heading) {

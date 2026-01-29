@@ -10,9 +10,6 @@ function closeSearch() {
   searchContainer.classList.remove('open');
   searchContainer.classList.add('hidden');
   searchInput.value = '';
-  if (searchResults) {
-    searchResults.classList.remove('glass');
-  }
   if (searchHint && window.innerWidth >= 1080) {
     searchHint.style.opacity = '0.7';
   }
@@ -76,12 +73,10 @@ export function setupSearch() {
           // Show container only after results are populated
           searchContainer.classList.remove('hidden');
           searchContainer.classList.add('open');
-          searchResults.classList.add('glass');
         } else {
           // Hide container when no results or empty search
           searchContainer.classList.remove('open');
           searchContainer.classList.add('hidden');
-          searchResults.classList.remove('glass');
         }
       }, 150); // 150ms delay to allow for smooth result population
     });

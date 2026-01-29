@@ -1,0 +1,180 @@
+@use 'sass:map';
+
+// ============================================
+// Sass Variables
+// ============================================
+
+// Breakpoints
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1080px;
+$breakpoint-large: 1280px;
+
+// Spacing Scale
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.25rem;
+$spacing-xl: 1.5rem;
+$spacing-2xl: 2rem;
+$spacing-3xl: 2.5rem;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+$transition-slower: 1s ease-out;
+
+// Z-index Scale
+$z-index-base: 1;
+$z-index-dropdown: 10;
+$z-index-sticky: 100;
+$z-index-overlay: 1000;
+$z-index-modal: 2000;
+$z-index-tooltip: 3000;
+$z-index-loading: 9999;
+
+// Border Radius
+$border-radius-xxs: 0.25rem;
+$border-radius-xs: 0.5rem;
+$border-radius-sm: 0.75rem;
+$border-radius-md: 1rem;
+$border-radius-lg: 1.25rem;
+$border-radius-xl: 1.5rem;
+$border-radius-2xl: 2rem;
+$border-radius-3xl: 2.5rem;
+
+// Fonts Map
+$fonts: (
+  display: 'Unbounded',
+  heading: 'Libre Baskerville',
+  body: 'Work Sans',
+);
+
+// Themes Map
+$themes: (
+  light: (background: oklch(93.71% 0.003 67.78deg),
+    background-secondary: oklch(95.71% 0.003 67.78deg),
+    background-tertiary: oklch(97.71% 0.003 67.78deg),
+    primary: oklch(64.03% 0.074 57.42deg),
+    secondary: oklch(81.51% 0.052 58.26deg),
+    accent: oklch(74.45% 0.095 57.10deg),
+    text-primary: oklch(12.15% 0.003 106.86deg),
+    text-secondary: oklch(20.15% 0.003 106.86deg),
+    text-muted: oklch(27.15% 0.003 67.78deg),
+    text-inverted: oklch(98.48% 0.001 106.42deg),
+  ),
+  dark: (background: oklch(13.62% 0.006 71.35deg),
+    background-secondary: oklch(21.0% 0.008 71.35deg),
+    background-tertiary: oklch(28.0% 0.01 71.35deg),
+    primary: oklch(58.77% 0.075 56.35deg),
+    secondary: oklch(38.64% 0.061 56.07deg),
+    accent: oklch(49.63% 0.101 52.75deg),
+    text-primary: oklch(98.48% 0.001 106.42deg),
+    text-secondary: oklch(79.85% 0.003 106.42deg),
+    text-muted: oklch(72.85% 0.003 67.78deg),
+  ),
+);
+
+// ============================================
+// Mixins
+// ============================================
+
+// Theme Spreader
+@mixin spread-theme($theme-name) {
+  $theme-map: map.get($themes, $theme-name);
+
+  @each $key, $value in $theme-map {
+    --#{$key}: #{$value};
+  }
+}
+
+// Media Query Mixins
+@mixin mobile {
+  @media screen and (width <=$breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (width <=$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (width <=$breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and (width <=$breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin mobile-up {
+  @media screen and (width >=$breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media screen and (width >=$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media screen and (width >=$breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin large-up {
+  @media screen and (width >=$breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and ($breakpoint-mobile <=width <=$breakpoint-large) {
+    @content;
+  }
+}
+
+// Dark Mode Mixin
+@mixin dark-mode {
+  body.dark-mode & {
+    @content;
+  }
+}
+
+// Flex Center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute Center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// User Select None
+@mixin no-select {
+  user-select: none;
+}
+
+// Focus Visible
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+  }
+}
