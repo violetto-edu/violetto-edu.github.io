@@ -1,0 +1,26 @@
+{
+  "name": "UI/UX Tutorials",
+  "short_name": "UI/UX",
+  "description": "UI/UX tutorials for students.",
+  "id": "com.violetto-edu.UI-UX",
+  "start_url": "https://violetto-edu.github.io/UI-UX/index.html",
+  "orientation": "natural",
+  "display": "standalone",
+  "background_color": "#da9d70",
+  "theme_color": "#8e5025",
+  "icons": [
+    {
+      "src": "/public/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/public/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
+

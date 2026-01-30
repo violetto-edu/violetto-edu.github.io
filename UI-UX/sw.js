@@ -1,12 +1,12 @@
 const CACHE_NAME = 'uiux-tutorials-v1';
 const ASSETS_TO_CACHE = [
-  '/UI-UX/',
-  '/UI-UX/index.html',
-  '/UI-UX/public/CSS/style.css',
-  '/UI-UX/public/JS/main.js',
-  '/UI-UX/public/icon/favicon.ico',
-  '/public/aurora.css',
-  '/UI-UX/manifest.json'
+  '/',
+  'index.html',
+  'public/CSS/style.css',
+  'public/JS/main.js',
+  'public/icon/favicon.ico',
+  '../public/aurora.css',
+  'manifest.json'
 ];
 
 self.addEventListener('install', (event) => {

@@ -8,17 +8,6 @@ export function setupSidebar() {
   window.toggleSidebar = function () {
     sidebar.classList.toggle('open');
     sidebarToggle.classList.toggle('open');
-
-    const barsIcon = sidebarToggle.querySelector('.bi-list');
-    const barsStaggeredIcon = sidebarToggle.querySelector('.bi-list-nested');
-
-    if (sidebar.classList.contains('open')) {
-      barsIcon.style.display = 'none';
-      barsStaggeredIcon.style.display = 'flex';
-    } else {
-      barsIcon.style.display = 'flex';
-      barsStaggeredIcon.style.display = 'none';
-    }
   };
 
   // Toggle sidebar when button is clicked

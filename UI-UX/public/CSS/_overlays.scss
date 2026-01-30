@@ -561,7 +561,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: $spacing-sm;
-  z-index: 1;
+  z-index: $z-index-overlay;
 }
 
 .update-notification {
@@ -698,8 +698,8 @@
   }
 
   &-header {
-    height: $spacing-xl;
-    margin-bottom: $spacing-xl;
+    height: $spacing-2xl;
+    margin: $spacing-xl 0;
   }
 
   &-paragraph {
@@ -719,10 +719,10 @@
 
 @keyframes skeleton-loading {
   0% {
-    background-position: -200% 0;
+    background-position: 200% 0;
   }
 
   100% {
-    background-position: 200% 0;
+    background-position: -200% 0;
   }
 }

@@ -87,7 +87,6 @@
   p {
     margin-top: 0;
     margin-bottom: $spacing-lg;
-    max-width: 70ch;
 
     &:last-child {
       margin-bottom: 0;
@@ -96,7 +95,7 @@
 
   ul,
   ol {
-    margin: $spacing-lg 0;
+    margin: $spacing-xxs 0 $spacing-sm 0;
     padding-left: $spacing-2xl;
 
     li {
@@ -108,20 +107,10 @@
         color: var(--text-secondary);
       }
     }
-
-    ul,
-    ol {
-      margin: $spacing-sm 0;
-    }
   }
 
   strong {
     font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  em {
-    font-style: italic;
   }
 
   hr {
@@ -462,14 +451,14 @@
 
   button {
     all: unset;
-    padding: $spacing-sm $spacing-lg;
-    background-color: var(--background-secondary);
-    border: 1px solid var(--text-primary);
+    padding: $spacing-xs $spacing-lg;
+    background-color: var(--accent);
     border-radius: $border-radius-sm;
+    cursor: pointer;
     transition: background-color $transition-base;
 
     &:hover {
-      background-color: var(--background-tertiary);
+      background-color: var(--secondary);
     }
   }
 }
@@ -590,7 +579,7 @@
   right: 0;
   bottom: 0.8rem;
   font-size: 0.8rem;
-  padding: $spacing-xs $spacing-sm;
+  padding: $spacing-xs $spacing-md;
   background: var(--background-secondary);
   border-radius: $border-radius-xl;
 

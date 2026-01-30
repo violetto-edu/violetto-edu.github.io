@@ -90,6 +90,7 @@
     background: var(--background-secondary);
     border-radius: $border-radius-lg;
     transition: left $transition-base, top $transition-base;
+    z-index: $z-index-modal;
 
     .bi-layout-sidebar {
       display: block;
@@ -208,7 +209,7 @@
 
     .miscellaneous {
       position: fixed;
-      bottom: $spacing-xl * 3;
+      bottom: $spacing-xl * 3.2;
       right: $spacing-sm;
 
       .toggle {

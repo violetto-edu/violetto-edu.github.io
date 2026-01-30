@@ -16,12 +16,16 @@
 
   <!-- Meta Tags -->
   <meta name="author" content="Manju Madhav V A" />
+  <meta name="theme-color" content="#da9d70" />
   <meta name="description"
     content="A tutorial for UI/UX Lab (BCGL606) covering various design and development techniques." />
   <meta name="keywords" content="UI, UX, tutorial, design, development, web design, user experience" />
-  <link rel="icon" type="image/x-icon" href="public/icon/favicon.ico" />
-  <link rel="apple-touch-icon" href="public/icon/icon.svg" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="./public/icon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./public/icon/favicon.svg" />
+  <link rel="shortcut icon" href="./public/icon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./public/icon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="UI/UX" />
+  <link rel="manifest" href="./site.webmanifest" />
 
   <!-- JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
@@ -52,10 +56,6 @@
 <body>
   <div class="container" aria-label="Container">
     <aside id="sidebar" aria-label="Sidebar">
-      <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar" type="button">
-        <i class="bi bi-layout-sidebar"></i>
-        <i class="bi bi-layout-sidebar-inset"></i>
-      </button>
       <h1 class="brand"><span class="title">UI/UX</span><br />Tutorials</h1>
       <div class="authentication"></div>
       <div class="search-container hidden">
@@ -126,6 +126,11 @@
       </aside>
     </main>
     <aside id="button-container" aria-label="Button container">
+      <button class="toggle" id="sidebar-toggle" aria-label="Toggle sidebar" type="button">
+        <i class="bi bi-layout-sidebar"></i>
+        <i class="bi bi-layout-sidebar-inset"></i>
+      </button>
+
       <button class="toggle" id="theme-toggle" aria-label="Toggle theme" type="button">
         <i class="bi bi-moon"></i>
         <i class="bi bi-sun"></i>

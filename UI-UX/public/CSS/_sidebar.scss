@@ -17,6 +17,12 @@
 }
 
 @include large {
+  body:not(.dark-mode) #sidebar {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  }
+}
+
+@include large {
   #sidebar {
     position: fixed;
     width: auto;
@@ -46,7 +52,7 @@
 // Brand & Title
 // ============================================
 .brand {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-align: center;
   font-family: map.get($fonts, 'display');
   color: var(--primary);
@@ -54,9 +60,10 @@
   padding: $spacing-md $spacing-2xl;
   margin-bottom: $spacing-sm;
   border-radius: $border-radius-md;
+  font-weight: 500;
 
   .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     cursor: pointer;
     position: relative;
     @include no-select;
