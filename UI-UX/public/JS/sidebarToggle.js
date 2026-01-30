@@ -54,12 +54,6 @@ export function setupSidebar() {
       sidebar.classList.remove('open');
       sidebarToggle.classList.remove('open');
       document.body.style.overflow = '';
-
-      const barsIcon = sidebarToggle.querySelector('.bi-list');
-      const barsStaggeredIcon =
-        sidebarToggle.querySelector('.bi-list-nested');
-      barsIcon.style.display = 'flex';
-      barsStaggeredIcon.style.display = 'none';
     }
   });
 }
