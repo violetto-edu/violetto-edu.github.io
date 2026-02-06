@@ -328,6 +328,11 @@ export class PDFReader {
           marks: extracted.marks
         };
 
+        // Include max_marks if it exists in the JSON data
+        if (mappedData.max_marks) {
+          completeSubject.max_marks = mappedData.max_marks;
+        }
+
         mappedSubjects.push(completeSubject);
       } else {
         // Track unmatched subjects but don't create fallbacks
