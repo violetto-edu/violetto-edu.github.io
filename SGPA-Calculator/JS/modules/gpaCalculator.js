@@ -51,14 +51,16 @@ export class GPACalculator {
           }
         } else {
           markValue = Number.parseFloat(marksInput.value);
-          if (markValue < 0 || markValue > 100) {
+          // Get max marks from the input element's max attribute
+          const maxMarks = Number.parseFloat(marksInput.getAttribute('max')) || 100;
+          if (markValue < 0 || markValue > maxMarks) {
             warnings.push(
-              `${subjectCode}: Marks should be between 0 and 100 (current: ${markValue})`
+              `${subjectCode}: Marks should be between 0 and ${maxMarks} (current: ${markValue})`
             );
             // Use 0 as fallback for invalid marks
-            markValue = Math.max(0, Math.min(100, markValue));
+            markValue = Math.max(0, Math.min(maxMarks, markValue));
           }
-          gradePoint = getGradePoint(markValue);
+          gradePoint = getGradePoint(markValue, maxMarks);
         }
       } else if (inputTypeRadio) {
         if (!gradeSelect.value) {

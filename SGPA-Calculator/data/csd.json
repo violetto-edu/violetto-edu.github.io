@@ -249,6 +249,7 @@
     "subject_code": "BCG786",
     "semester": 7,
     "subject_name": "Major Project Phase-II",
-    "credits": 6
+    "credits": 6,
+    "max_marks": 200
   }
 ]

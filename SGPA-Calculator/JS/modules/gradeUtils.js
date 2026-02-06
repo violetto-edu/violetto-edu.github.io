@@ -30,16 +30,20 @@ export const letterGradeMapping = {
 /**
  * Get grade point based on marks
  * @param {number} marks - The marks obtained
+ * @param {number} maxMarks - The maximum marks (default: 100)
  * @returns {number} The corresponding grade point
  */
-export function getGradePoint(marks) {
-  if (marks >= 90 && marks <= 100) return 10;
-  if (marks >= 80) return 9;
-  if (marks >= 70) return 8;
-  if (marks >= 60) return 7;
-  if (marks >= 55) return 6;
-  if (marks >= 50) return 5;
-  if (marks >= 40) return 4;
+export function getGradePoint(marks, maxMarks = 100) {
+  // Convert to percentage
+  const percentage = (marks / maxMarks) * 100;
+
+  if (percentage >= 90 && percentage <= 100) return 10;
+  if (percentage >= 80) return 9;
+  if (percentage >= 70) return 8;
+  if (percentage >= 60) return 7;
+  if (percentage >= 55) return 6;
+  if (percentage >= 50) return 5;
+  if (percentage >= 40) return 4;
   return 0;
 }
 

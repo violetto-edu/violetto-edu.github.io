@@ -321,10 +321,10 @@ export class UIManager {
             <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 text-caption">Default Input Type:</span>
             <div class="flex flex-col md:flex-row items-center gap-2">
               <label class="flex items-center space-x-2">
-                <input 
-                  type="radio" 
-                  name="defaultInputType" 
-                  value="marks" 
+                <input
+                  type="radio"
+                  name="defaultInputType"
+                  value="marks"
                   checked
                   onchange="window.UIManager.handleDefaultInputTypeChange()"
                   class="form-radio text-fuchsia-600 focus:ring-fuchsia-500"
@@ -332,9 +332,9 @@ export class UIManager {
                 <span class="text-sm text-gray-700 dark:text-gray-300 text-body">Marks</span>
               </label>
               <label class="flex items-center space-x-2">
-                <input 
-                  type="radio" 
-                  name="defaultInputType" 
+                <input
+                  type="radio"
+                  name="defaultInputType"
                   value="grade"
                   onchange="window.UIManager.handleDefaultInputTypeChange()"
                   class="form-radio text-fuchsia-600 focus:ring-fuchsia-500"
@@ -385,10 +385,10 @@ export class UIManager {
               <span class="text-xs font-semibold text-fuchsia-700 dark:text-fuchsia-300 text-caption">Default:</span>
               <div class="flex items-center space-x-2">
                 <label class="flex items-center space-x-1">
-                  <input 
-                    type="radio" 
-                    name="semesterDefaultInputType_${semester}" 
-                    value="marks" 
+                  <input
+                    type="radio"
+                    name="semesterDefaultInputType_${semester}"
+                    value="marks"
                     checked
                     onchange="window.UIManager.handleSemesterDefaultInputTypeChange(${semester})"
                     class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
@@ -396,9 +396,9 @@ export class UIManager {
                   <span class="text-xs text-fuchsia-700 dark:text-fuchsia-300 text-caption">Marks</span>
                 </label>
                 <label class="flex items-center space-x-1">
-                  <input 
-                    type="radio" 
-                    name="semesterDefaultInputType_${semester}" 
+                  <input
+                    type="radio"
+                    name="semesterDefaultInputType_${semester}"
                     value="grade"
                     onchange="window.UIManager.handleSemesterDefaultInputTypeChange(${semester})"
                     class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
@@ -432,10 +432,10 @@ export class UIManager {
       <td class="px-6 py-4">
         <div class="flex flex-col space-y-2">
           <label class="flex items-center space-x-1">
-            <input 
-              type="radio" 
-              name="inputType_${globalIndex}" 
-              value="marks" 
+            <input
+              type="radio"
+              name="inputType_${globalIndex}"
+              value="marks"
               checked
               onchange="window.UIManager.handleInputTypeChange(${globalIndex})"
               class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
@@ -443,9 +443,9 @@ export class UIManager {
             <span class="text-xs text-gray-700 dark:text-gray-300 text-caption">Marks</span>
           </label>
           <label class="flex items-center space-x-1">
-            <input 
-              type="radio" 
-              name="inputType_${globalIndex}" 
+            <input
+              type="radio"
+              name="inputType_${globalIndex}"
               value="grade"
               onchange="window.UIManager.handleInputTypeChange(${globalIndex})"
               class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
@@ -455,17 +455,17 @@ export class UIManager {
         </div>
       </td>
       <td class="px-6 py-4">
-        <input 
-          type="number" 
+        <input
+          type="number"
           id="marks_${globalIndex}"
-          name="marks" 
-          min="0" 
-          max="100" 
+          name="marks"
+          min="0"
+          max="${subject.max_marks || 100}"
           required
           class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px] form-text"
-          placeholder="Enter marks"
+          placeholder="Enter marks (max: ${subject.max_marks || 100})"
         >
-        <select 
+        <select
           id="grade_${globalIndex}"
           name="grade"
           required
@@ -498,8 +498,8 @@ export class UIManager {
       </div>
       <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
         <div class="flex justify-end items-center">
-          <button 
-            type="button" 
+          <button
+            type="button"
             id="calculateBtn"
             class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-fuchsia-600 hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 shadow-lg hover:shadow-xl transition-all duration-200 text-body"
           >
