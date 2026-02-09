@@ -6,7 +6,8 @@
     "sass:build": "sass --no-source-map --style=compressed --load-path=. .:.",
     "sass:watch": "sass --watch --no-source-map --load-path=. .:.",
     "lint": "stylelint \"**/*.scss\"",
-    "lint:fix": "stylelint \"**/*.scss\" --fix"
+    "lint:fix": "stylelint \"**/*.scss\" --fix",
+    "process-images": "powershell -ExecutionPolicy Bypass -File ./UI-UX/tutorials/images/process-tutorial-images.ps1"
   },
   "devDependencies": {
     "sass": "^1.97.1",

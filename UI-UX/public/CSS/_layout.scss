@@ -127,6 +127,14 @@ body:not(.dark-mode) #structure-view {
     padding: $spacing-xs $spacing-md;
     margin-left: $spacing-lg;
     border-left: 1px solid var(--text-muted);
+
+    &:hover {
+      border-left: 1px solid var(--text-primary);
+    }
+
+    &.active {
+      border-left: 1px solid var(--text-primary);
+    }
   }
 }
 
