@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - '@firebase/util'
+  - '@parcel/watcher'
+  - protobufjs
