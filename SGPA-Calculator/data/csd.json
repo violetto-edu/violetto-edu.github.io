@@ -251,5 +251,24 @@
     "subject_name": "Major Project Phase-II",
     "credits": 6,
     "max_marks": 200
+  },
+  {
+    "subject_code": "BCG801x",
+    "semester": 8,
+    "subject_name": "Professional Elective (Online)",
+    "credits": 3
+  },
+  {
+    "subject_code": "BCG802x",
+    "semester": 8,
+    "subject_name": "Open Elective (Online)",
+    "credits": 3
+  },
+  {
+    "subject_code": "BINT803",
+    "semester": 8,
+    "subject_name": "Internship (Industry/Research)",
+    "credits": 10,
+    "max_marks": 200
   }
 ]
