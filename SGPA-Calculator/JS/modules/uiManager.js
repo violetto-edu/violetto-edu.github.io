@@ -5,7 +5,9 @@
 
 import { DataManager } from './dataManager.js';
 import { GPACalculator } from './gpaCalculator.js';
+import { NotificationManager } from './notificationManager.js';
 import { PopupManager } from './popupManager.js';
+import { SubjectStorageManager } from './subjectStorageManager.js';
 
 export class UIManager {
   constructor() {
@@ -246,8 +248,11 @@ export class UIManager {
     if (!container) return;
 
     container.innerHTML = '';
+    const hydratedSubjects = SubjectStorageManager.hydrateSubjects(subjects);
+    const restoredSubjectCount =
+      SubjectStorageManager.countStoredMatches(subjects);
 
-    if (subjects.length === 0) {
+    if (hydratedSubjects.length === 0) {
       container.innerHTML = `
         <h2 class="text-xl text-gray-700 dark:text-gray-300 text-center py-6 text-heading">
           No subjects found for selected criteria.
@@ -256,7 +261,7 @@ export class UIManager {
     }
 
     // Group subjects by semester
-    const subjectsBySemester = subjects.reduce((acc, subject) => {
+    const subjectsBySemester = hydratedSubjects.reduce((acc, subject) => {
       const semester = subject.semester;
       if (!acc[semester]) {
         acc[semester] = [];
@@ -297,6 +302,14 @@ export class UIManager {
 
     container.innerHTML = table;
     container.classList.remove('hidden');
+
+    if (restoredSubjectCount > 0) {
+      NotificationManager.showInfo(
+        `Loaded ${restoredSubjectCount} saved subject record${
+          restoredSubjectCount === 1 ? '' : 's'
+        } from local storage.`
+      );
+    }
 
     const calculateBtn = document.getElementById('calculateBtn');
     if (calculateBtn) {
@@ -423,8 +436,21 @@ export class UIManager {
    * @returns {string} Subject row HTML
    */
   generateSubjectRowHTML(subject, globalIndex, rowClass) {
+    const hasStoredMarks =
+      subject.marks !== null && subject.marks !== undefined && subject.marks !== '';
+    const prefersGradeInput =
+      subject.inputType === 'grade' || (!hasStoredMarks && !!subject.grade);
+    const marksValue = hasStoredMarks ? subject.marks : '';
+    const gradeValue = subject.grade || '';
+
     return `
-    <tr class="${rowClass}">
+    <tr
+      class="${rowClass}"
+      data-subject-code="${subject.subject_code}"
+      data-semester="${subject.semester}"
+      data-branch-scope="${subject.branch_scope || ''}"
+      data-max-marks="${subject.max_marks || 100}"
+    >
       <td class="px-6 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 text-numeric">${subject.semester}</td>
       <td class="px-6 py-4 text-sm font-bold text-fuchsia-600 dark:text-fuchsia-400 text-caption">${subject.subject_code}</td>
       <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium text-body">${subject.subject_name}</td>
@@ -436,7 +462,7 @@ export class UIManager {
               type="radio"
               name="inputType_${globalIndex}"
               value="marks"
-              checked
+              ${prefersGradeInput ? '' : 'checked'}
               onchange="window.UIManager.handleInputTypeChange(${globalIndex})"
               class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
             >
@@ -447,6 +473,7 @@ export class UIManager {
               type="radio"
               name="inputType_${globalIndex}"
               value="grade"
+              ${prefersGradeInput ? 'checked' : ''}
               onchange="window.UIManager.handleInputTypeChange(${globalIndex})"
               class="form-radio text-fuchsia-600 focus:ring-fuchsia-500 text-xs"
             >
@@ -462,6 +489,8 @@ export class UIManager {
           min="0"
           max="${subject.max_marks || 100}"
           required
+          value="${marksValue}"
+          style="display: ${prefersGradeInput ? 'none' : 'block'};"
           class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px] form-text"
           placeholder="Enter marks (max: ${subject.max_marks || 100})"
         >
@@ -469,18 +498,18 @@ export class UIManager {
           id="grade_${globalIndex}"
           name="grade"
           required
-          style="display: none;"
+          style="display: ${prefersGradeInput ? 'block' : 'none'};"
           class="block w-full px-3 py-2.5 rounded-lg border dark:border-gray-700 focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm bg-fuchsia-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none min-w-[180px] form-text"
         >
-          <option value="">Select Grade</option>
-          <option value="O">O • Outstanding (10)</option>
-          <option value="A+">A+ • Excellent (9)</option>
-          <option value="A">A • Very Good (8)</option>
-          <option value="B+">B+ • Good (7)</option>
-          <option value="B">B • Above Average (6)</option>
-          <option value="C">C • Average (5)</option>
-          <option value="P">P • Pass (4)</option>
-          <option value="F">F • Fail (0)</option>
+          <option value="" ${gradeValue === '' ? 'selected' : ''}>Select Grade</option>
+          <option value="O" ${gradeValue === 'O' ? 'selected' : ''}>O • Outstanding (10)</option>
+          <option value="A+" ${gradeValue === 'A+' ? 'selected' : ''}>A+ • Excellent (9)</option>
+          <option value="A" ${gradeValue === 'A' ? 'selected' : ''}>A • Very Good (8)</option>
+          <option value="B+" ${gradeValue === 'B+' ? 'selected' : ''}>B+ • Good (7)</option>
+          <option value="B" ${gradeValue === 'B' ? 'selected' : ''}>B • Above Average (6)</option>
+          <option value="C" ${gradeValue === 'C' ? 'selected' : ''}>C • Average (5)</option>
+          <option value="P" ${gradeValue === 'P' ? 'selected' : ''}>P • Pass (4)</option>
+          <option value="F" ${gradeValue === 'F' ? 'selected' : ''}>F • Fail (0)</option>
         </select>
       </td>
       <input type="hidden" name="credits" value="${subject.credits}">

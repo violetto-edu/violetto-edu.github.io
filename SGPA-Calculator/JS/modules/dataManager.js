@@ -7,6 +7,34 @@ import { PopupManager } from './popupManager.js';
 
 export class DataManager {
   /**
+   * Derive branch scope from a data URL
+   * @param {string} url - JSON URL
+   * @returns {string}
+   */
+  static getBranchScopeFromUrl(url) {
+    if (url.includes('/one.json') || url.includes('/two.json')) {
+      return 'common';
+    }
+
+    const match = url.match(/\/([a-z0-9]+)\.json$/i);
+    return match ? match[1].toLowerCase() : 'unknown';
+  }
+
+  /**
+   * Attach branch scope metadata to subjects
+   * @param {any[]} subjects - Raw subjects
+   * @param {string} url - Source JSON URL
+   * @returns {any[]}
+   */
+  static attachBranchScope(subjects, url) {
+    const branchScope = this.getBranchScopeFromUrl(url);
+    return subjects.map((subject) => ({
+      ...subject,
+      branch_scope: subject.branch_scope || branchScope
+    }));
+  }
+
+  /**
    * Fetch subjects from JSON file
    * @param {string} url - The URL of the JSON file
    * @param {string|null} semester - Optional semester filter
@@ -26,7 +54,7 @@ export class DataManager {
             ? data.filter((subject) => subject.semester == semester)
             : data;
           if (subjects.length > 0) {
-            return subjects;
+            return this.attachBranchScope(subjects, url);
           } else {
             throw new Error('No subjects found for the selected criteria.');
           }
@@ -113,23 +141,20 @@ export class DataManager {
       )
     )
       .then((results) => {
-        // Check if branch data is missing or empty and warn user
+        // Branch-specific data is required for CGPA beyond the common semesters.
         if (shouldCheckBranchData && branchUrl) {
           const branchResult = results.find(
             (result) => result.url === branchUrl
           );
           if (branchResult && (branchResult.isEmpty || branchResult.error)) {
-            PopupManager.showWarningPopup([
-              `Branch data for ${branch.toUpperCase()} is not available or empty.`,
-              'CGPA calculation will proceed using only 1st and 2nd semester subjects.'
-            ]);
+            throw new Error('CGPA_BRANCH_DATA_NOT_FOUND');
           }
         }
 
         // Filter out empty arrays and combine valid data
         const validDataArrays = results
           .filter((result) => result.data.length > 0)
-          .map((result) => result.data);
+          .map((result) => this.attachBranchScope(result.data, result.url));
 
         if (validDataArrays.length === 0) {
           throw new Error('No valid data found for CGPA calculation.');
@@ -154,11 +179,12 @@ export class DataManager {
 
         // Check if it's a data availability issue vs a validation error
         if (
+          errorMessage.includes('CGPA_BRANCH_DATA_NOT_FOUND') ||
           errorMessage.includes('No valid data found') ||
           errorMessage.includes('No data found')
         ) {
           PopupManager.showDataNotFoundPopup(
-            'No valid data available for CGPA calculation. Please ensure semester data files exist.'
+            "Data for this criteria doesn't exist."
           );
         } else {
           PopupManager.showWarningPopup([errorMessage], false);

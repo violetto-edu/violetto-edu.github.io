@@ -48,7 +48,7 @@ export class PDFReader {
       }
 
       NotificationManager.showInfo(
-        'Processing VTU Provisional Results PDF... Please wait'
+        'Processing VTU results PDF... Please wait'
       );
 
       const arrayBuffer = await this.fileToArrayBuffer(file);
@@ -69,7 +69,7 @@ export class PDFReader {
 
       if (parsedData.subjects.length === 0) {
         NotificationManager.showError(
-          'Only VTU Provisional Results are supported.'
+          'Only VTU Provisional Results and Provisional Updated Results are supported.'
         );
         return null;
       }
@@ -87,14 +87,17 @@ export class PDFReader {
       parsedData.subjects = mappedSubjects;
 
       NotificationManager.showSuccess(
-        `Successfully extracted ${parsedData.subjects.length} subjects from VTU Provisional Results PDF.`
+        `Successfully extracted ${parsedData.subjects.length} subjects from ${parsedData.format} PDF.`
       );
 
       return parsedData;
     } catch (error) {
-      if (error.message === 'Only VTU Provisional Results are supported') {
+      if (
+        error.message ===
+        'Only VTU Provisional Results and Provisional Updated Results are supported'
+      ) {
         NotificationManager.showError(
-          'Only VTU Provisional Results are supported.'
+          'Only VTU Provisional Results and Provisional Updated Results are supported.'
         );
       } else {
         NotificationManager.showError('Failed to read PDF: ' + error.message);
@@ -127,8 +130,11 @@ export class PDFReader {
     const cleanText = text.replace(/\s+/g, ' ').trim();
 
     // Check if this is a VTU document
-    if (!this.isVTUDocument(cleanText)) {
-      throw new Error('Only VTU Provisional Results are supported');
+    const detectedFormat = this.detectVTUResultFormat(cleanText);
+    if (!detectedFormat) {
+      throw new Error(
+        'Only VTU Provisional Results and Provisional Updated Results are supported'
+      );
     }
 
     // Extract VTU-specific data
@@ -136,7 +142,7 @@ export class PDFReader {
 
     return {
       subjects: result.subjects,
-      format: 'VTU',
+      format: detectedFormat,
       studentInfo: result.studentInfo,
       confidence: result.subjects.length > 0 ? 0.9 : 0,
       validation: {
@@ -153,17 +159,25 @@ export class PDFReader {
    * @param {string} text - Clean text
    * @returns {boolean} True if VTU document
    */
-  isVTUDocument(text) {
-    const vtuIdentifiers = [
-      'visvesvaraya technological university',
-      'vtu',
-      'belagavi',
-      'karnataka',
-      'provisional results'
-    ];
-
+  detectVTUResultFormat(text) {
     const lowerText = text.toLowerCase();
-    return vtuIdentifiers.some((identifier) => lowerText.includes(identifier));
+    const hasVTUIdentity =
+      lowerText.includes('visvesvaraya technological university') ||
+      lowerText.includes('vtu');
+
+    if (!hasVTUIdentity) {
+      return null;
+    }
+
+    if (lowerText.includes('provisional updated results')) {
+      return 'VTU Provisional Updated Results';
+    }
+
+    if (lowerText.includes('provisional results')) {
+      return 'VTU Provisional Results';
+    }
+
+    return null;
   }
 
   /**
@@ -174,6 +188,7 @@ export class PDFReader {
   parseVTUTranscript(text) {
     const extractedData = [];
     const studentInfo = {};
+    const lowerText = text.toLowerCase();
 
     // Extract student information
     const nameMatch = text.match(/student\s+name\s*[:\s]+([a-zA-Z\s]{3,50})/i);
@@ -194,6 +209,9 @@ export class PDFReader {
     // Extract semester
     const semesterMatch = text.match(/semester\s*[:\s]*(\d+)/i);
     const semester = semesterMatch ? parseInt(semesterMatch[1]) : 1;
+    const isUpdatedResultFormat = lowerText.includes(
+      'provisional updated results'
+    );
 
     // VTU pattern: Extract only subject code, marks, and grades
     // Different patterns for different semesters due to different code formats
@@ -201,7 +219,19 @@ export class PDFReader {
 
     let patterns = [];
 
-    if (semester <= 2) {
+    if (isUpdatedResultFormat) {
+      if (semester <= 2) {
+        patterns = [
+          // Example: BESCK104B INTRODUCTION TO ELECTRICAL ENGINEERING 44 18 P 29 P 29 P
+          /(B[A-Z]{4,5}\d{3}[A-Z]?)\s+([A-Za-z\s&\-()\/,:.0-9]+?)\s+(\d{1,3})\s+(\d{1,3})\s+([A-Z]+)\s+(\d{1,3})\s+([A-Z]+)\s+(\d{1,3})\s+([A-Z]+)/g
+        ];
+      } else {
+        patterns = [
+          // Example higher-sem revaluation row with final marks/result columns
+          /(B[A-Z]{2,4}L?\d{2,4}[A-Z]?)\s+([A-Za-z\s&\-()\/,:.0-9]+?)\s+(\d{1,3})\s+(\d{1,3})\s+([A-Z]+)\s+(\d{1,3})\s+([A-Z]+)\s+(\d{1,3})\s+([A-Z]+)/g
+        ];
+      }
+    } else if (semester <= 2) {
       // First and Second Semester Patterns (from one.json and two.json)
       // These have longer prefixes like BMATS, BCHES, BCEDK, BESCK, BETCK, etc.
       patterns = [
@@ -211,7 +241,7 @@ export class PDFReader {
         // Pattern for subjects with 'x' suffix: BESCK204x, BETCK205x
         /(B[A-Z]{4,5}\d{3}[A-Z])\s+([A-Za-z\s&\-()\/,:.0-9]+?)\s+(\d{1,3})\s+(\d{1,3})\s+(\d{1,3})\s+([A-Z])\s+/g,
 
-        // Alternative pattern for any missed first-year subjects
+      // Alternative pattern for any missed first-year subjects
         /(B[A-Z]{4,5}\d{3}[A-Z]?)\s+([^0-9]*(?:\d+\.?\d*[^0-9\s])*[^0-9]*?)\s+(\d{1,3})\s+(\d{1,3})\s+(\d{1,3})\s+([A-Z])/g
       ];
     } else {
@@ -271,28 +301,29 @@ export class PDFReader {
 
     let match;
       while ((match = pattern.exec(text)) !== null) {
-        const [
-          fullMatch,
-          code,
-          subjectName,
-          internal,
-          external,
-          total,
-          result
-        ] = match;
+        const code = match[1];
+        let totalMarks = null;
+
+        if (isUpdatedResultFormat) {
+          const internalMarks = Number.parseInt(match[3], 10) || 0;
+          const finalMarks = Number.parseInt(match[8], 10) || 0;
+          totalMarks = internalMarks + finalMarks;
+        } else {
+          totalMarks = Number.parseInt(match[5], 10) || 0;
+        }
 
         // Validate the extracted code and avoid duplicates
         if (
           isValidVTUSubjectCode(code.trim()) &&
           !extractedData.some((subject) => subject.subject_code === code.trim())
         ) {
-      const extractedSubject = {
-        subject_code: code.trim(),
-        marks: parseInt(total),
+          const extractedSubject = {
+            subject_code: code.trim(),
+            marks: totalMarks,
             semester: semester
-      };
+          };
 
-      extractedData.push(extractedSubject);
+          extractedData.push(extractedSubject);
         }
       }
     }
@@ -354,7 +385,7 @@ export class PDFReader {
     // Ensure we have at least some matched subjects
     if (mappedSubjects.length === 0) {
       NotificationManager.showError(
-        'No subjects could be matched with course data. Please ensure you upload a valid VTU provisional result PDF.'
+        'No subjects could be matched with course data. Please ensure you upload a valid VTU provisional or provisional updated result PDF.'
       );
       return [];
     }
@@ -420,7 +451,7 @@ export class PDFReader {
         } else {
           // No fallback - show error and return null
           NotificationManager.showError(
-            'Branch not detected from USN. Please ensure you upload a valid VTU provisional result PDF with correct USN format.'
+            'Branch not detected from USN. Please ensure you upload a valid VTU provisional or provisional updated result PDF with correct USN format.'
           );
           return null;
         }

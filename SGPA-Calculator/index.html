@@ -162,7 +162,7 @@
     <!-- Sidebar Menu -->
     <div
       id="sidebarMenu"
-      class="fixed inset-0 bg-black bg-opacity-50 z-[60] transition-opacity duration-300 opacity-0 pointer-events-none">
+      class="fixed inset-0 bg-black bg-opacity-50 z-60 transition-opacity duration-300 opacity-0 pointer-events-none">
       <div
         class="fixed right-0 top-4 w-72 bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg rounded-lg shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
         <!-- Sidebar Header -->
@@ -706,9 +706,9 @@
     <!-- Privacy Policy Modal -->
     <div
       id="privacyModal"
-      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-100 hidden items-center justify-center p-4">
       <div
-        class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         <div
           class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 whitespace-nowrap">
@@ -733,106 +733,70 @@
           </button>
         </div>
         <div
-          class="p-6 overflow-y-auto max-h-[60vh] space-y-4 text-sm text-gray-600 dark:text-gray-300">
+          class="p-6 overflow-y-auto max-h-[70vh] space-y-4 text-sm text-gray-600 dark:text-gray-300">
           <div class="space-y-3">
             <h3 class="font-semibold text-gray-800 dark:text-gray-200">
-              Data Collection and Processing
+              What This App Does
             </h3>
             <p>
-              We are committed to protecting your privacy. This calculator
-              operates with a strict no-data-collection policy:
+              This calculator works inside your browser. Your PDFs, marks, and
+              GPA data are not uploaded to our server.
             </p>
             <ul class="list-disc pl-5 space-y-1">
               <li>
-                <strong>No Server Uploads:</strong> All PDF processing happens
-                entirely in your browser using client-side JavaScript
+                PDF parsing happens on your device
               </li>
               <li>
-                <strong>No Data Storage:</strong> Your academic data, PDFs, and
-                calculation results are never saved or stored anywhere
+                GPA calculations happen on your device
               </li>
               <li>
-                <strong>No Analytics:</strong> We do not use Google Analytics,
-                tracking pixels, or any user behavior monitoring tools
-              </li>
-              <li>
-                <strong>No Third-Party Services:</strong> Your data never leaves
-                your device or gets sent to external services
+                We do not send your academic data to a backend
               </li>
             </ul>
           </div>
 
           <div class="space-y-3">
             <h3 class="font-semibold text-gray-800 dark:text-gray-200">
-              Local Storage & Technical Implementation
+              What Is Stored Locally
             </h3>
-            <p>The only data we store locally on your device is:</p>
-            <ul class="list-disc pl-5 space-y-1">
-              <li>
-                <strong>Theme Preference:</strong> Whether you prefer light or
-                dark mode (stored in browser localStorage)
-              </li>
-              <li>
-                <strong>Session Data:</strong> Temporary PDF extraction results
-                during your session (automatically cleared when you close the
-                browser)
-              </li>
-            </ul>
-            <p class="mt-4">
-              Our privacy-first approach is built into the application
-              architecture:
+            <p>
+              Some data is saved in your browser so the app can remember your
+              progress:
             </p>
             <ul class="list-disc pl-5 space-y-1">
               <li>
-                <strong>Client-Side Processing:</strong> PDF.js library
-                processes documents entirely in your browser
+                Theme preference
               </li>
               <li>
-                <strong>No Network Requests:</strong> Apart from loading the
-                application itself, no data is transmitted over the internet
+                Temporary PDF data while moving between pages
               </li>
               <li>
-                <strong>Static Hosting:</strong> The application is hosted as
-                static files with no server-side processing
-              </li>
-              <li>
-                <strong>Open Source:</strong> All code is transparent and can be
-                audited on GitHub
+                Saved subject records and marks you entered or imported, so
+                they can be reused later on this browser
               </li>
             </ul>
+            <p>
+              This local data stays in your browser until you clear site data
+              or local storage.
+            </p>
           </div>
 
           <div class="space-y-3">
             <h3 class="font-semibold text-gray-800 dark:text-gray-200">
-              Data Security
+              In Short
             </h3>
-            <p>Your academic information remains secure because:</p>
-            <ul class="list-disc pl-5 space-y-1">
-              <li>
-                <strong>No Data Transmission:</strong> Your PDFs and grades
-                never leave your device
-              </li>
-              <li>
-                <strong>Browser Security:</strong> Modern browser sandboxing
-                protects your data from external access
-              </li>
-              <li>
-                <strong>No Cookies:</strong> We don't use tracking cookies or
-                persistent identifiers
-              </li>
-              <li>
-                <strong>HTTPS Only:</strong> All connections are encrypted and
-                secure
-              </li>
-            </ul>
+            <p>
+              Your result data is processed locally, and saved data stays on
+              your browser only. We do not have access to your PDFs, marks, or
+              personal information.
+            </p>
           </div>
 
           <div
             class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
             <p class="text-green-800 dark:text-green-300 font-medium">
-              <strong>Bottom Line:</strong> Your academic data is completely
-              private, secure, and never leaves your device. We have no access
-              to your PDFs, grades, or personal information.
+              <strong>Bottom line:</strong> your data stays on your device, but
+              this app may save marks locally in your browser for convenience.
             </p>
           </div>
         </div>

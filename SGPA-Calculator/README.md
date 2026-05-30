@@ -6,7 +6,7 @@ A modern, intelligent GPA calculator designed specifically for Visvesvaraya Tech
 
 ### Smart Upload Method
 1. Visit the calculator landing page
-2. Drag and drop your VTU provisional result PDF or click to browse
+2. Drag and drop your VTU provisional result or provisional updated result PDF, or click to browse
 3. Wait for automatic processing and validation
 4. Review extracted subjects and calculate your GPA
 
@@ -41,7 +41,7 @@ A modern, intelligent GPA calculator designed specifically for Visvesvaraya Tech
 ## PDF Requirements
 
 ### Supported Formats
-- VTU provisional result PDFs with machine-readable text
+- VTU provisional result and provisional updated result PDFs with machine-readable text
 - File size limit: 10MB
 - Must contain subject codes, marks, and semester information
 
@@ -120,7 +120,7 @@ JS/
 ### PDF Processing Issues
 1. **Ensure PDF is text-based**: Test by selecting text in the PDF
 2. **Check file size**: Must be under 10MB
-3. **Verify format**: Only VTU provisional results supported
+3. **Verify format**: Supports VTU provisional results and provisional updated results
 4. **Try manual entry**: If PDF processing fails
 
 ### Getting Help

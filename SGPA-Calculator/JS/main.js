@@ -4,8 +4,10 @@
  */
 
 import { ThemeManager } from './modules/themeManager.js';
+import { DataManager } from './modules/dataManager.js';
 import { UIManager } from './modules/uiManager.js';
 import { NavigationManager } from './modules/navigationManager.js';
+import { SubjectStorageManager } from './modules/subjectStorageManager.js';
 
 /**
  * Application Class
@@ -57,12 +59,19 @@ class Application {
 
         if (pdfDataString) {
           const pdfData = JSON.parse(pdfDataString);
+          pdfData.subjects = this.attachBranchScopeToPDFSubjects(pdfData);
+          const mergeSummary = SubjectStorageManager.mergeSubjects(
+            pdfData.subjects || []
+          );
+          pdfData.storageSummary = mergeSummary;
+          pdfData.totalStoredSubjects =
+            SubjectStorageManager.getStoredSubjectCount();
 
           // Show PDF data notification
           import('./modules/notificationManager.js').then(
             ({ NotificationManager }) => {
               NotificationManager.showSuccess(
-                `Loaded ${pdfData.subjects.length} subjects from PDF`
+                `Loaded ${pdfData.subjects.length} subjects from PDF. Saved locally: ${pdfData.totalStoredSubjects}.`
               );
             }
           );
@@ -90,12 +99,15 @@ class Application {
    * Populate calculator with PDF data
    * @param {Object} pdfData - Parsed PDF data
    */
-  populateFromPDFData(pdfData) {
+  async populateFromPDFData(pdfData) {
     try {
       const { subjects, studentInfo } = pdfData;
+      const displaySubjects = await this.expandPDFSubjectsWithSemesterData(
+        pdfData
+      );
 
       // Determine if this is SGPA or CGPA based on semesters
-      const semesters = [...new Set(subjects.map((s) => s.semester))];
+      const semesters = [...new Set(displaySubjects.map((s) => s.semester))];
       const isMultipleSemesters = semesters.length > 1;
 
       // Set grade type
@@ -121,13 +133,13 @@ class Application {
 
       // Display subjects directly
       if (this.uiManager) {
-        this.uiManager.displaySubjects(subjects);
+        this.uiManager.displaySubjects(displaySubjects);
         this.uiManager.scrollToElement('subjectTableContainer');
       }
 
       // Auto-select input types based on available data
       setTimeout(() => {
-        this.autoSelectInputTypes(subjects);
+        this.autoSelectInputTypes(displaySubjects);
       }, 500);
     } catch (error) {
       console.error('Error populating PDF data:', error);
@@ -135,11 +147,129 @@ class Application {
   }
 
   /**
+   * Expand partial PDF data into full semester subject lists, then overlay PDF marks
+   * @param {Object} pdfData - Parsed PDF data
+   * @returns {Promise<Array>} Subjects ready for display
+   */
+  async expandPDFSubjectsWithSemesterData(pdfData) {
+    const pdfSubjects = pdfData?.subjects || [];
+    if (pdfSubjects.length === 0) {
+      return [];
+    }
+
+    const semesterNumbers = [...new Set(pdfSubjects.map((s) => s.semester))];
+    const branch = this.extractBranchFromUSN(pdfData?.studentInfo?.usn);
+
+    try {
+      const semesterSubjectLists = await Promise.all(
+        semesterNumbers.map((semester) => this.fetchSemesterSubjects(semester, branch))
+      );
+      const expandedSubjects = semesterSubjectLists.flat();
+
+      if (expandedSubjects.length === 0) {
+        return pdfSubjects;
+      }
+
+      const pdfSubjectsByKey = new Map(
+        pdfSubjects.map((subject) => [
+          `${subject.semester}:${subject.subject_code}`,
+          subject
+        ])
+      );
+
+      return expandedSubjects.map((subject) => {
+        const pdfSubject = pdfSubjectsByKey.get(
+          `${subject.semester}:${subject.subject_code}`
+        );
+
+        return pdfSubject ? { ...subject, ...pdfSubject } : subject;
+      });
+    } catch (error) {
+      console.warn('Failed to expand partial PDF data:', error);
+      return pdfSubjects;
+    }
+  }
+
+  /**
+   * Attach branch scope to parsed PDF subjects before persistence
+   * @param {Object} pdfData - Parsed PDF data
+   * @returns {Array}
+   */
+  attachBranchScopeToPDFSubjects(pdfData) {
+    const branch = this.extractBranchFromUSN(pdfData?.studentInfo?.usn);
+
+    return (pdfData?.subjects || []).map((subject) => ({
+      ...subject,
+      branch_scope:
+        Number.parseInt(subject.semester, 10) <= 2 ? 'common' : branch || 'unknown'
+    }));
+  }
+
+  /**
+   * Fetch complete subject list for a semester
+   * @param {number} semester - Semester number
+   * @param {string|null} branch - Branch code
+   * @returns {Promise<Array>}
+   */
+  async fetchSemesterSubjects(semester, branch) {
+    if (semester === 1) {
+      return DataManager.fetchSubjects('data/one.json');
+    }
+
+    if (semester === 2) {
+      return DataManager.fetchSubjects('data/two.json');
+    }
+
+    if (!branch) {
+      throw new Error(`Branch is required for semester ${semester}`);
+    }
+
+    return DataManager.fetchSubjects(`data/${branch}.json`, semester);
+  }
+
+  /**
+   * Extract branch code from VTU USN
+   * @param {string} usn - University Seat Number
+   * @returns {string|null}
+   */
+  extractBranchFromUSN(usn) {
+    if (!usn || usn.length < 8) {
+      return null;
+    }
+
+    const branchMatch = usn.match(/\d{2}([A-Z]{2})\d{3}$/);
+    if (!branchMatch) {
+      return null;
+    }
+
+    const branchMapping = {
+      CG: 'csd',
+      AI: 'aiml',
+      CD: 'csds',
+      CS: 'cse',
+      CV: 'cv',
+      ME: 'me',
+      EE: 'eee',
+      EC: 'ece',
+      IS: 'ise'
+    };
+
+    return branchMapping[branchMatch[1]] || null;
+  }
+
+  /**
    * Show PDF information banner
    * @param {Object} pdfData - Parsed PDF data
    */
   showPDFBanner(pdfData) {
-    const { subjects, format, studentInfo, confidence } = pdfData;
+    const {
+      subjects,
+      format,
+      studentInfo,
+      confidence,
+      storageSummary,
+      totalStoredSubjects
+    } = pdfData;
 
     const banner = document.createElement('div');
     banner.className =
@@ -170,6 +300,11 @@ class Application {
             ${
               studentInfo.branch
                 ? `<p><strong>Branch:</strong> ${studentInfo.branch}</p>`
+                : ''
+            }
+            ${
+              storageSummary
+                ? `<p><strong>Local Records:</strong> ${totalStoredSubjects} total (${storageSummary.created} new, ${storageSummary.updated} updated)</p>`
                 : ''
             }
           </div>

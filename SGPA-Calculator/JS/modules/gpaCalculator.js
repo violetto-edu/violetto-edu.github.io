@@ -9,6 +9,8 @@ import {
   letterGradeMapping
 } from './gradeUtils.js';
 import { PopupManager } from './popupManager.js';
+import { NotificationManager } from './notificationManager.js';
+import { SubjectStorageManager } from './subjectStorageManager.js';
 
 export class GPACalculator {
   /**
@@ -21,6 +23,7 @@ export class GPACalculator {
     let totalMarks = 0;
     let warnings = [];
     let subjectIndex = 0; // Separate index for actual subject rows
+    let subjectsToPersist = [];
 
     subjects.forEach((row) => {
       const creditInput = row.querySelector('input[name="credits"]');
@@ -81,6 +84,18 @@ export class GPACalculator {
       }
       totalMarks += markValue;
 
+      subjectsToPersist.push({
+        subject_code: row.dataset.subjectCode || subjectCode.trim(),
+        subject_name: row.querySelector('td:nth-child(3)')?.textContent || '',
+        semester: row.dataset.semester,
+        branch_scope: row.dataset.branchScope || '',
+        credits: credit,
+        max_marks: Number.parseFloat(row.dataset.maxMarks) || 100,
+        inputType: inputTypeRadio?.value || 'marks',
+        marks: inputTypeRadio?.value === 'marks' ? markValue : null,
+        grade: inputTypeRadio?.value === 'grade' ? gradeSelect.value : ''
+      });
+
       subjectIndex++; // Increment only for actual subject rows
     });
 
@@ -90,8 +105,19 @@ export class GPACalculator {
       return;
     }
 
+    const persistenceSummary =
+      SubjectStorageManager.mergeSubjects(subjectsToPersist);
+
     this.displayResult(totalCredits, totalGradePoints, totalMarks);
     this.scrollToElement('result');
+
+    if (subjectsToPersist.length > 0) {
+      NotificationManager.showSuccess(
+        `Saved ${subjectsToPersist.length} subject record${
+          subjectsToPersist.length === 1 ? '' : 's'
+        } locally. Total stored: ${persistenceSummary.totalStored}.`
+      );
+    }
   }
 
   /**
