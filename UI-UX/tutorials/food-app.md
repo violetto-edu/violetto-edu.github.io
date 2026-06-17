@@ -2,7 +2,7 @@
 
 Our second experiment focuses on creating a food app design, where we will develop a wireframe and user interface for a well-known chat application, as well as a prototype.
 
-For this experiment, we will concentrate on <span class="brand Zomato">Zomato</span>, a popular food delivery and restaurant discovery platform. Zomato exemplifies excellent user interface design through its user-friendly navigation, organized visual hierarchy, and cohesive design elements. It provides a seamless experience for users to explore restaurants, read reviews, and conveniently place orders.
+For this experiment, we will concentrate on <span class="application">Zomato</span>, a popular food delivery and restaurant discovery platform. Zomato exemplifies excellent user interface design through its user-friendly navigation, organized visual hierarchy, and cohesive design elements. It provides a seamless experience for users to explore restaurants, read reviews, and conveniently place orders.
 
 ![Zomato interface on Apple iOS](images/food-app/zomato-user-interface.webp){data-aspect-ratio="1:1"}
 _Zomato interface on Apple iOS. Image source: Zomato Official Website, 2025._

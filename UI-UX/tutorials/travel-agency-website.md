@@ -2,7 +2,7 @@
 
 Our fifth experiment involves creating a wireframe and prototyping the UI for a travel agency website, featuring designs for the Home Page with a search bar, Activities page, Client Testimonial page, and Image Gallery.
 
-For this experiment, we will focus on <span class="brand TripAdvisor">TripAdvisor</span>, a leading online platform for travel planning and discovery. TripAdvisor exemplifies excellent user interface design through its intuitive search functionality, user-friendly navigation, and organized presentation of travel-related information. It offers a seamless experience for users to explore destinations, read reviews, compare prices, and plan their trips efficiently. The website's design ensures that travelers can easily find what they're looking for, from hotels and restaurants to activities and itineraries, all while providing a visually appealing and cohesive interface.
+For this experiment, we will focus on <span class="application">TripAdvisor</span>, a leading online platform for travel planning and discovery. TripAdvisor exemplifies excellent user interface design through its intuitive search functionality, user-friendly navigation, and organized presentation of travel-related information. It offers a seamless experience for users to explore destinations, read reviews, compare prices, and plan their trips efficiently. The website's design ensures that travelers can easily find what they're looking for, from hotels and restaurants to activities and itineraries, all while providing a visually appealing and cohesive interface.
 
 ![TripAdvisor Interface](images/travel-agency-website/trip-advisor-user-interface.webp)
 _TripAdvisor Interface. Image source: TripAdvisor Official Website, 2025._

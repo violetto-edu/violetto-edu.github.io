@@ -2,7 +2,7 @@
 
 Let’s kick off our third experiment: a redesign of a social media application where we will create a wireframe, user interface and prototype for a popular platform.
 
-For this experiment, we will focus on <span class="brand Instagram">Instagram</span>, a widely-loved social networking service owned by Meta. Instagram exemplifies outstanding user interface design through its visually appealing layout, intuitive navigation, and consistent design patterns. The platform offers users a seamless experience to share photos, connect with friends, and discover new content.
+For this experiment, we will focus on <span class="application">Instagram</span>, a widely-loved social networking service owned by Meta. Instagram exemplifies outstanding user interface design through its visually appealing layout, intuitive navigation, and consistent design patterns. The platform offers users a seamless experience to share photos, connect with friends, and discover new content.
 
 ![Instagram interface on Apple iOS](images/social-media-app/instagram-user-interface.webp){data-aspect-ratio="1:1"}
 _Instagram interface on Apple iOS. Image source: Fast Company, September 2024._

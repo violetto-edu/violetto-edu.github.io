@@ -2,7 +2,7 @@
 
 Our fourth experiment focuses on designing and prototyping a product website page, including developing web pages, wireframes, user interfaces, and rollovers for a well-known tech platform.
 
-For this experiment, we will concentrate on <span class="brand Google">Google Store</span>, a prominent online destination for purchasing Google hardware and accessories. Google Store exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and cohesive design elements. It provides a seamless experience for users to browse products, read specifications, and conveniently make purchases.
+For this experiment, we will concentrate on <span class="application">Google Store</span>, a prominent online destination for purchasing Google hardware and accessories. Google Store exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and cohesive design elements. It provides a seamless experience for users to browse products, read specifications, and conveniently make purchases.
 
 ![Google Store Interface](images/product-website/google-store-user-interface.webp)
 _Google Store Interface. Image source: Google Official Website, 2025._

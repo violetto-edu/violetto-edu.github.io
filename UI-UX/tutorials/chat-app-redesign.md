@@ -2,7 +2,7 @@
 
 Let's begin our first experiment: A Chat App Redesign where we will create a wireframe and redesign the user interface of a well-known chat application. We will be using Figma as our design tool throughout this tutorial, as recommended by the university.
 
-For our experiment, we'll focus on <span class="brand WhatsApp">WhatsApp</span>, a widely-used messaging platform from Meta. WhatsApp exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and consistent design patterns.
+For our experiment, we'll focus on <span class="application">WhatsApp</span>, a widely-used messaging platform from Meta. WhatsApp exemplifies excellent user interface design through its intuitive navigation, clear visual hierarchy, and consistent design patterns.
 
 ![WhatsApp interface on Apple iOS and Android](images/chat-app-redesign/whatsapp-user-interface.webp)
 _New iOS and Android user interface on WhatsApp. Image courtesy of Meta Design, 2024._
