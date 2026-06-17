@@ -6,8 +6,8 @@
 // ============================================
 
 @font-face {
-  font-family: 'Libre Baskerville';
-  src: url('../assets/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+  font-family: 'DM Serif';
+  src: url('../assets/DM_Serif/DMSerifText-Regular.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -15,15 +15,17 @@
 
 @font-face {
   font-family: 'Unbounded';
-  src: url('../assets/Unbounded/Unbounded-VariableFont_wght.ttf') format('truetype');
+  src: url('../assets/Unbounded/Unbounded-VariableFont_wght.ttf')
+    format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('../assets/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-family: 'DM Sans';
+  src: url('../assets/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf')
+    format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
