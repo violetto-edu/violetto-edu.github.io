@@ -97,27 +97,26 @@ UX (User Experience) design is the **strategic and analytical discipline** that 
 ## The Design Process: Where UI and UX Collaborate
 
 1. **Discovery & Research** (UX-led, UI-informed)
-
    - User interviews and surveys
    - Competitive analysis
    - Brand guidelines review
-2. **Strategy & Planning** (UX-led)
 
+2. **Strategy & Planning** (UX-led)
    - User personas and journey maps
    - Information architecture
    - Content strategy
-3. **Design & Prototyping** (UI/UX collaboration)
 
+3. **Design & Prototyping** (UI/UX collaboration)
    - Wireframes and user flows
    - Visual design and branding
    - Interactive prototypes
-4. **Testing & Iteration** (UX-led, UI-refined)
 
+4. **Testing & Iteration** (UX-led, UI-refined)
    - Usability testing
    - A/B testing
    - Performance optimization
-5. **Implementation & Launch** (UI/UX collaboration)
 
+5. **Implementation & Launch** (UI/UX collaboration)
    - Developer handoff
    - Quality assurance
    - Launch monitoring
@@ -154,6 +153,6 @@ As you embark on your UI/UX journey, remember:
 
 Whether you're designing a mobile app, website, or enterprise software, the principles of UI/UX design will guide you toward creating experiences that users love and businesses value.
 
-*Ready to dive deeper? Let's explore the fundamental principles, tools, and techniques that will help you become a skilled UI/UX designer.*
+_Ready to dive deeper? Let's explore the fundamental principles, tools, and techniques that will help you become a skilled UI/UX designer._
 
 ---

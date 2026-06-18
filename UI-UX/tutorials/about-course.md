@@ -11,6 +11,7 @@
 > NOTE: Wire frames can be hand-drawn and recorded by the students. Designing and Prototyping can be done using Figma.
 
 ---
+
 ## Experiments:
 
 <i class="bi bi-arrow-right"></i> Get the laboratory manual [here](https://violetto-edu.github.io/UI-UX/public/resources/UI-UX-Laboratory-Manual.pdf).
@@ -29,6 +30,7 @@
 | 10    | **[Music Player App](music-player-app.md)**: Create a wireframe, Design and prototype the pages with a background and a Rollover button, and Song selection Page with a Home Rollover button. The third page may include animated play and pause button, play music animation, timer animation.        |
 
 ---
+
 ## Course outcomes (Course Skill Set):
 
 At the end of the course the student will be able to:

@@ -5,17 +5,18 @@ Figma is a powerful, web-based design and prototyping tool widely used by UI/UX 
 > <i class="bi bi-exclamation-triangle"></i> **Note:** If you prefer not to use Figma and wish to explore alternative tools, you may skip this section. For instance, **[Penpot](https://penpot.app/)** is an open-source alternative for UI/UX development, and a **[setup guide](setting-up-penpot.md)** is available for it as well.
 
 ---
+
 ## 1. Sign Up for Figma
 
-- Visit [Figma](https://www.figma.com/) and create an account using either your school email (preferred) or a personal email.  
-> **Important:** If you sign up using your Google account, you will not be able to change your email address or password directly in Figma. To switch to another email, you must disconnect Google from your account. For details, refer to **[Switch from Google SSO to Email and Password](https://help.figma.com/hc/en-us/articles/360039820114#Google_SSO)**.
+- Visit [Figma](https://www.figma.com/) and create an account using either your school email (preferred) or a personal email.
+  > **Important:** If you sign up using your Google account, you will not be able to change your email address or password directly in Figma. To switch to another email, you must disconnect Google from your account. For details, refer to **[Switch from Google SSO to Email and Password](https://help.figma.com/hc/en-us/articles/360039820114#Google_SSO)**.
 
 ## 2. Apply for Figma for Education
 
 - After creating an account, apply for [Figma for Education | Free Tools for the Classroom](https://www.figma.com/education/).
   1. Complete the application form with accurate details about your educational institution.
   2. Submit the form and await approval.
-  
+
   > **Note:** Providing accurate information ensures faster approval of your application.
 
 ## 3. Download Figma
@@ -29,9 +30,11 @@ Figma is a powerful, web-based design and prototyping tool widely used by UI/UX 
   - [Figma for iOS](https://itunes.apple.com/app/figma-mirror/id1152747299)
 
 ---
+
 ## Learn Figma with the Resource Library
 
 Figma offers a comprehensive [Resource Library](https://www.figma.com/resource-library/) for beginners and professionals, covering:
+
 - [Design Basics](https://www.figma.com/resource-library/design-basics/)
 - [UI Design](https://www.figma.com/resource-library/ui-design/)
 - [UX Design](https://www.figma.com/resource-library/ux-design/)
@@ -41,8 +44,8 @@ Figma offers a comprehensive [Resource Library](https://www.figma.com/resource-l
 
 ## Explore Additional Resources
 
-- **UI Kits:** [Free UI Kits for Seamless Designs | Figma](https://www.figma.com/community/ui-kits?resource_type=mixed&editor_type=all&price=all&sort_by=all_time&creators=all)  
-- **Icon Sets:** [Free Icon Sets & Icon Packs | Figma](https://www.figma.com/community/icons?resource_type=mixed&editor_type=all&price=all&sort_by=all_time&creators=all)  
+- **UI Kits:** [Free UI Kits for Seamless Designs | Figma](https://www.figma.com/community/ui-kits?resource_type=mixed&editor_type=all&price=all&sort_by=all_time&creators=all)
+- **Icon Sets:** [Free Icon Sets & Icon Packs | Figma](https://www.figma.com/community/icons?resource_type=mixed&editor_type=all&price=all&sort_by=all_time&creators=all)
 - **Community:** [Join the Figma Community](https://www.figma.com/community)
 
 ---

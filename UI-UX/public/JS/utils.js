@@ -3,6 +3,7 @@ import { lazyLoadImages } from './imageHandler.js';
 import { tutorials } from './sidebar.js';
 import { initCodeHighlighting, addCopyButtons } from './prismHighlighter.js';
 import { lastEditTracker } from './lastEditTracker.js';
+import { setupIframeHandlers } from './iframeHandler.js';
 
 // Function to load tutorial content with lazy loading
 export async function loadTutorial(filename) {
@@ -113,6 +114,9 @@ export async function loadTutorial(filename) {
 
     // Lazy load images
     lazyLoadImages(contentWrapper);
+
+    // Replace iframes with lazy-load wrappers
+    setupIframeHandlers(contentWrapper);
 
     // Add last edit date information to the top of content
     lastEditTracker.displayLastEditDate(filename, contentWrapper);

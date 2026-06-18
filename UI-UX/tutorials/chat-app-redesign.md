@@ -179,7 +179,6 @@ To create a frame:
 ### Adding Filter Buttons
 
 1. Design three distinct filter buttons:
-
    - "All" button:
      - Dimensions: **50 x 30** pixels
    - "Unread" button:
